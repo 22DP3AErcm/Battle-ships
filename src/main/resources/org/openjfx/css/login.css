@@ -1,0 +1,15 @@
+/* FILEPATH: /c:/file/CSS/login.css */
+
+.anchor-pane {
+    -fx-background-color: #323740;
+}
+.Register {
+    -fx-background-color: #444b58;
+}
+.RegisterTitle {
+    -fx-text-fill: #ffffff;
+}
+
+.RegisterButton {
+    -fx-background-color: #66c57f; 
+}
