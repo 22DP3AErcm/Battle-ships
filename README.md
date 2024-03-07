@@ -8,3 +8,4 @@ export JAVA_HOME="C:\Program Files\Java\jdk-17"
 
 # palaist projektu
 ./mvnw.cmd javafx:run -f "C:\Users\ae00170\Documents\Battle-ships\pom.xml"
+./mvnw.cmd javafx:run -f "C:\Users\rz00754\Documents\Project\Battle-ships\pom.xml"
