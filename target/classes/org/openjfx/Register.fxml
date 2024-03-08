@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="Register" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="Register" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegisterController">
    <children>
       <AnchorPane prefHeight="50.0" prefWidth="400.0" styleClass="anchor-pane">
          <children>
@@ -48,7 +48,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Hyperlink layoutX="176.0" layoutY="471.0" text="Login">
+      <Hyperlink layoutX="176.0" layoutY="471.0" onAction="#goToLogin" text="Login">
          <font>
             <Font size="14.0" />
          </font>

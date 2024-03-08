@@ -3,10 +3,10 @@ package org.openjfx;
 import java.io.IOException;
 import javafx.fxml.FXML;
 
-public class Register {
+public class RegisterController {
 
     @FXML
-    private void switchToLogin() throws IOException {
+    private void goToLogin() throws IOException {
         App.setRoot("Login");
     }
 }
