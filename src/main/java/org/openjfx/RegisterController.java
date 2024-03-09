@@ -8,15 +8,11 @@ import javafx.scene.text.Text;
 public class RegisterController {
 
     @FXML
-    private TextField username;
-    @FXML
-    private TextField email;
-    @FXML
-    private TextField password;
-    @FXML
-    private TextField password2;
+    private TextField username, password, password2, email;
     @FXML
     private Text DoNotMatch;
+    
+    CsvManeger CsvManeger = new CsvManeger();
     
 
     @FXML
@@ -29,8 +25,10 @@ public class RegisterController {
             DoNotMatch.setVisible(false);
             String usernameText = username.getText();
             String emailText = email.getText();
-            
-            //App.setRoot("Login");
+
+            CsvManeger.addDataToCSV(usernameText, emailText, passwordText);
+
+            App.setRoot("Login");
         } else {
             DoNotMatch.setVisible(true);
             
