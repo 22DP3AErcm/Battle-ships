@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class LoginController {
@@ -45,13 +46,21 @@ public class LoginController {
             for (String[] strings : Data) {
                 if (strings[1].equals(emailText) && strings[2].equals(passwordText)) {
                     System.out.println("Login successful");
+                    
                     login = true;
                     WrongLogin.setVisible(false);
                     break;
                 }
             }
             if (login) {
+                Stage stage = (Stage) email.getScene().getWindow();
+                
+                stage.setResizable(true);
+
+                stage.setWidth(800);
+                stage.setHeight(600);
                 App.setRoot("Game");
+                
             } else {
                 WrongLogin.setVisible(true);
             }
