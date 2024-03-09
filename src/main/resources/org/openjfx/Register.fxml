@@ -53,7 +53,6 @@
             <Font size="14.0" />
          </font>
       </Hyperlink>
-      <Text fx:id="DoNotMatch" fill="RED" layoutX="102.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwords do not match!" visible="false" wrappingWidth="192.0" />
-      <Text fx:id="DoNotMatch1" fill="RED" layoutX="102.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="192.0" />
+      <Text fx:id="DoNotMatch" fill="RED" layoutX="103.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwords do not match!" visible="false" wrappingWidth="286.0" />
    </children>
 </AnchorPane>
