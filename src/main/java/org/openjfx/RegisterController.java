@@ -73,7 +73,10 @@ public class RegisterController {
 
 
     @FXML
-    private void goToLogin() throws IOException {
+    private void goToLogin() throws IOException
+    {
         App.setRoot("Login");
     }
+
+    
 }

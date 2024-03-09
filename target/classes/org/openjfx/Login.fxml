@@ -31,6 +31,7 @@
             <Font size="13.0" />
          </font>
       </Text>
+
       <Button layoutX="162.0" layoutY="372.0" mnemonicParsing="false" onAction="#login" styleClass="RegisterButton" stylesheets="@css/login.css" text="Login" AnchorPane.bottomAnchor="198.0" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="372.0">
          <font>
             <Font name="System Bold" size="14.0" />
