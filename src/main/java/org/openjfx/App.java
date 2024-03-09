@@ -21,10 +21,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Login"), 400, 600);
+        scene = new Scene(loadFXML("Login"));
         stage.setScene(scene);
         
-
+        
         Image icon = new Image("file:src\\main\\resources\\org\\openjfx\\Images\\Icon2done.png");
         stage.getIcons().add(icon);
         stage.setTitle("Battle ships");
