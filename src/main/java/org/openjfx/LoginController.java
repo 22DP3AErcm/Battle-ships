@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 
 public class LoginController {
     
+    
     @FXML
     private void goToRegister() throws IOException
     {
