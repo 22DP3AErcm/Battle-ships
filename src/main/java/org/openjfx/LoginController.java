@@ -45,8 +45,6 @@ public class LoginController {
             }
             for (String[] strings : Data) {
                 if (strings[1].equals(emailText) && strings[2].equals(passwordText)) {
-                    System.out.println("Login successful");
-                    
                     login = true;
                     WrongLogin.setVisible(false);
                     break;

@@ -29,7 +29,7 @@ public class RegisterController {
 
         // Lietotājvārdam jābūt vismaz 3 simbolus garai
         if (username.getText().length() < 4) {
-            DoNotMatch.setText("Username must be at least 3 characters long!");
+            DoNotMatch.setText("Username must be at least 4 characters long!");
             DoNotMatch.setVisible(true);
             return;
         }
