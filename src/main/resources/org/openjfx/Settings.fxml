@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Register" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.SettingsController">
+   <children>
+      <AnchorPane prefHeight="43.0" prefWidth="600.0" styleClass="anchor-pane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="WHITE" layoutX="254.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+            <Button layoutX="539.0" layoutY="7.0" mnemonicParsing="false" onAction="#goToGame" prefWidth="54.0" styleClass="Register" text="Game" textFill="WHITE" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
+         </children>
+      </AnchorPane>
+      <Text fx:id="resolution" fill="WHITE" layoutX="128.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resulution:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <MenuButton fx:id="resolutionButton" layoutX="233.0" layoutY="92.0" mnemonicParsing="false" onAction="#changeResulution800x600" text="Res: 800x600">
+        <items>
+            <MenuItem mnemonicParsing="false" onAction="#changeResulution800x600" text="800x600" />
+          <MenuItem mnemonicParsing="false" onAction="#changeResulution1024x768" text="1024x768" />
+          <MenuItem mnemonicParsing="false" onAction="#changeResulution1280x720" text="1280x720" />
+            <MenuItem mnemonicParsing="false" onAction="#changeResulution1280x800" text="1280x800" />
+            <MenuItem mnemonicParsing="false" onAction="#changeResulution1366x768" text="1366x768" />
+            <MenuItem mnemonicParsing="false" onAction="#changeResulution1440x900" text="1440x900" />
+            <MenuItem mnemonicParsing="false" onAction="#changeResulution1600x900" text="1600x900" />
+            <MenuItem fx:id="M1920x1080" mnemonicParsing="false" onAction="#changeResulution1920x1080" text="1920x1080" />
+        </items>
+      </MenuButton>
+      <Text fill="WHITE" layoutX="128.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fullscreen:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <CheckBox layoutX="233.0" layoutY="136.0" mnemonicParsing="false" onAction="#changeResulutionFullscreen" />
+   </children>
+</AnchorPane>

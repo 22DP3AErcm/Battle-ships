@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.GameController">
    <children>
       <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="130.0" layoutY="31.0" prefHeight="317.0" prefWidth="326.0" AnchorPane.bottomAnchor="41.5" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="137.0" AnchorPane.topAnchor="41.5">
         <columnConstraints>
@@ -35,7 +35,11 @@
           <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Pane accessibleRole="IMAGE_VIEW" prefHeight="400.0" prefWidth="133.0" styleClass="Register" stylesheets="@css/login.css" />
-      <Button mnemonicParsing="false" text="Button" />
+      <Pane fx:id="pane" accessibleRole="IMAGE_VIEW" prefHeight="400.0" prefWidth="133.0" styleClass="Register" stylesheets="@css/login.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutX="40.0" layoutY="110.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
+         </children>
+      </Pane>
+      <Button mnemonicParsing="false" onAction="#panevisable" text="Button" />
    </children>
 </AnchorPane>

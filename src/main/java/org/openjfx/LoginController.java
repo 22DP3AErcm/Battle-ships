@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.fxml.FXML;
+
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -13,7 +14,8 @@ import javafx.stage.Stage;
 
 public class LoginController {
     @FXML
-    private TextField email, password;    
+    private TextField email, password;
+    
     
     @FXML
     private Text WrongLogin;
@@ -52,11 +54,10 @@ public class LoginController {
             }
             if (login) {
                 Stage stage = (Stage) email.getScene().getWindow();
-                
-                stage.setResizable(true);
 
                 stage.setWidth(800);
                 stage.setHeight(600);
+                stage.centerOnScreen();
                 App.setRoot("Game");
                 
             } else {

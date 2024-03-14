@@ -1,6 +1,10 @@
 package org.openjfx;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -20,6 +24,7 @@ public class RegisterController {
         String passwordText = password.getText();
         String password2Text = password2.getText();
         
+
         // Visiem lokiem jābūt aizpildītiem
         if (username.getText().isEmpty() || email.getText().isEmpty() || password.getText().isEmpty() || password2.getText().isEmpty()) {
             DoNotMatch.setText("All fields must be filled!");
@@ -54,6 +59,32 @@ public class RegisterController {
             DoNotMatch.setVisible(true);
             return;
         }
+
+        // Pārbauda vai lietotājvārds jau nav aizņemts un ēpasts
+        try (FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv")){
+            BufferedReader bufferedReader = new BufferedReader(reader);
+
+            ArrayList<String[]> Data = new ArrayList<String[]>();
+            String line;
+            
+            while ((line = bufferedReader.readLine()) != null) {
+                Data.add(line.split(", "));
+            }
+            
+            for (String[] strings : Data) {
+                if (strings[0].equals(username.getText())) {
+                    DoNotMatch.setText("Username already taken!");
+                    DoNotMatch.setVisible(true);
+                    return;
+                }
+                if (strings[1].equals(email.getText())) {
+                    DoNotMatch.setText("Email already taken!");
+                    DoNotMatch.setVisible(true);
+                    return;
+                }
+            }
+
+        } catch (IOException vException) {}
 
         // Parolēm jāsakrīt
         if (passwordText.equals(password2Text)) {
