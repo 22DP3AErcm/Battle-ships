@@ -6,11 +6,11 @@ import java.util.regex.Pattern;
 public class Validator {
 
     public static boolean isValidString(String str) {
-        return str.matches("^[a-zA-ZŪŪĀĀŠŠēūŗčļņžģāķĒŪĀŠĻŅĢČĶēū]+( [a-zA-ZŪŪĀĀŠŠēūŗčļņžģāķĒŪĀŠĻŅĢČĶēū]+)*$");
+        return str.matches("^[a-zA-Z0-9\\\\p{Punct} ]{1,15}$");
     }
 
     public static boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        String emailRegex = "^[a-zA-Z0-9._%+-]{1,50}@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();

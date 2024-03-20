@@ -41,5 +41,6 @@
          </children>
       </Pane>
       <Button mnemonicParsing="false" onAction="#panevisable" text="Button" />
+      <Pane fx:id="draggablePane" layoutX="14.0" layoutY="53.0" prefHeight="39.0" prefWidth="87.0" styleClass="RegisterButton" stylesheets="@css/login.css" />
    </children>
 </AnchorPane>

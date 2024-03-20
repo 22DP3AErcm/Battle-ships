@@ -11,6 +11,10 @@ public class GameController {
 
     private int button = 0;
 
+    @FXML
+    private Pane draggablePane;
+
+    
 
     @FXML
     private void panevisable() throws IOException
@@ -29,4 +33,5 @@ public class GameController {
     {
         App.setRoot("Settings");
     }
+
 }
