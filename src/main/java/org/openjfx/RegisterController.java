@@ -24,8 +24,12 @@ public class RegisterController {
         String passwordText = password.getText();
         String password2Text = password2.getText();
         
+<<<<<<< Updated upstream
 
         // Visiem lokiem jābūt aizpildītiem
+=======
+        // Visiem logiem jābūt aizpildītiem
+>>>>>>> Stashed changes
         if (username.getText().isEmpty() || email.getText().isEmpty() || password.getText().isEmpty() || password2.getText().isEmpty()) {
             DoNotMatch.setText("All fields must be filled!");
             DoNotMatch.setVisible(true);

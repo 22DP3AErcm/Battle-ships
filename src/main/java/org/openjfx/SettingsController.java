@@ -33,6 +33,7 @@ public class SettingsController {
         Stage stage = (Stage) resolution.getScene().getWindow();
         stage.setWidth(800);
         stage.setHeight(600);
+        resolutionButton.setText("800x600");
         stage.centerOnScreen();
         
     }
