@@ -1,11 +1,14 @@
 package org.openjfx;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 
-public class GameController {
+public class GameController implements Initializable{
     @FXML
     private Pane pane;
 
@@ -14,7 +17,12 @@ public class GameController {
     @FXML
     private Pane draggablePane;
 
-    
+    Draggable draggable = new Draggable();
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        draggable.makeDraggable(draggablePane);
+    }
 
     @FXML
     private void panevisable() throws IOException
