@@ -24,12 +24,10 @@ public class RegisterController {
         String passwordText = password.getText();
         String password2Text = password2.getText();
         
-<<<<<<< Updated upstream
 
-        // Visiem lokiem jābūt aizpildītiem
-=======
+
+
         // Visiem logiem jābūt aizpildītiem
->>>>>>> Stashed changes
         if (username.getText().isEmpty() || email.getText().isEmpty() || password.getText().isEmpty() || password2.getText().isEmpty()) {
             DoNotMatch.setText("All fields must be filled!");
             DoNotMatch.setVisible(true);
@@ -45,7 +43,7 @@ public class RegisterController {
 
         // Lietotājvārdam jābūt vismaz 3 simbolus garai
         if (!Validator.isValidString(username.getText())) {
-            DoNotMatch.setText("Username can only contain letters!");
+            DoNotMatch.setText("Username can only contain letters and numbers and can only 15 characters long!");
             DoNotMatch.setVisible(true);
             return;
         }
