@@ -35,12 +35,12 @@
           <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
+      <Pane fx:id="draggablePane" layoutX="14.0" layoutY="53.0" prefHeight="39.0" prefWidth="87.0" styleClass="RegisterButton" stylesheets="@css/login.css" />
       <Pane fx:id="pane" accessibleRole="IMAGE_VIEW" prefHeight="400.0" prefWidth="133.0" styleClass="Register" stylesheets="@css/login.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button layoutX="40.0" layoutY="110.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
          </children>
       </Pane>
       <Button mnemonicParsing="false" onAction="#panevisable" text="Button" />
-      <Pane fx:id="draggablePane" layoutX="14.0" layoutY="53.0" prefHeight="39.0" prefWidth="87.0" styleClass="RegisterButton" stylesheets="@css/login.css" />
    </children>
 </AnchorPane>
