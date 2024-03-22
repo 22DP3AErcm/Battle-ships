@@ -6,11 +6,13 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class GameController implements Initializable{
     @FXML
-    private Pane pane;
+    private StackPane pane;
 
     private int button = 0;
 
@@ -28,10 +30,10 @@ public class GameController implements Initializable{
     private void panevisable() throws IOException
     {
         if (button == 0) {
-            pane.setVisible(false);
+            pane.setVisible(true);
             button = 1;
         } else {
-            pane.setVisible(true);
+            pane.setVisible(false);
             button = 0;
         }
     }
