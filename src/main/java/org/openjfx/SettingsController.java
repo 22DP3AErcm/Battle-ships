@@ -195,6 +195,9 @@ public class SettingsController {
         } else {
             stage.setFullScreen(false);
             Fullscreen = 0;
+            resolutionButton.setText("800x600");
+            stage.setWidth(800);
+            stage.setHeight(600);
 
             fullscreenCheckbox.setSelected(false);
             singleton.setCheckboxState(false);

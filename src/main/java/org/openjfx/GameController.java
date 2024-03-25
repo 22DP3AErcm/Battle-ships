@@ -58,10 +58,6 @@ public class GameController implements Initializable{
         });
     }
 
-
-
-
-
     @FXML
     private void panevisable() throws IOException
     {
