@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -23,6 +26,8 @@ public class GameController implements Initializable{
     private Button settingButton;
     private int button = 0;
     
+    private Ships ship;
+
     @FXML
     private AnchorPane anchorPane;
 
@@ -34,28 +39,30 @@ public class GameController implements Initializable{
     @FXML
     private Pane draggablePane;
 
-    private ArrayList<Ships> ships;
-
-    Draggable draggable = new Draggable();
+    
+    Draggable draggable;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         grid = new Grid(anchorPane);
         grid.centerGridPane();
 
-        Ships ship = new Ships(1, 0, 0, 30, 70, anchorPane);
-        ship.setColor(Color.GREEN);
-        ship.setStroke(Color.BLACK);
-        ships = new ArrayList<>();
-        ships.add(ship);
-        ship.bringToFront();
 
-        anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.R && ship.isBeingDragged()) {
-                ship.rotate();
-            }
-        });
+        double cellSize = gridPane.getPrefWidth() / 40;
+        draggable = new Draggable(cellSize); // Create Draggable object here
+
+        ship = new Ships(0, 0, 40, 40, cellSize, grid);
+        //draggable.makeDraggable(ship);
+
+        gridPane.getChildren().add(ship);
+        gridPane.toFront();
+
+        ResolutionService.resolutionProperty().addListener((obs, oldVal, newVal) -> handleResolutionChange());
+    }
+
+    private void handleResolutionChange() {
+        double newCellSize = gridPane.getPrefWidth() / 10; // Assuming a 10x10 grid
+        ship.updateCellSize(newCellSize);
     }
 
     @FXML

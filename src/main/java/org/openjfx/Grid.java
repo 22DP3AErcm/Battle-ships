@@ -51,4 +51,9 @@ public class Grid {
         AnchorPane.setRightAnchor(gridPane, (paneWidth - gridPaneWidth) / 2);
     }
 
+    public Pane getGridPane() {
+        return gridPane;
+    }
+
+
 }

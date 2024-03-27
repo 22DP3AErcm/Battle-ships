@@ -47,6 +47,7 @@ public class SettingsController {
         resolutionButton.setText("800x600");
         stage.centerOnScreen();
         
+        ResolutionService.resolutionProperty().set(800);
     }
 
     @FXML
@@ -65,6 +66,7 @@ public class SettingsController {
         resolutionButton.setText("1024x768");
         stage.centerOnScreen();
         
+        ResolutionService.resolutionProperty().set(1024);
     }
 
     @FXML
@@ -82,6 +84,8 @@ public class SettingsController {
         stage.setHeight(720);
         resolutionButton.setText("1280x720");
         stage.centerOnScreen();
+
+        ResolutionService.resolutionProperty().set(1280);
     }
     @FXML
     private void changeResulution1280x800() throws IOException
@@ -98,6 +102,8 @@ public class SettingsController {
         stage.setHeight(800);
         resolutionButton.setText("1280x800");
         stage.centerOnScreen();
+
+        ResolutionService.resolutionProperty().set(1280);
     }
     @FXML
     private void changeResulution1366x768() throws IOException
@@ -114,6 +120,8 @@ public class SettingsController {
         stage.setHeight(768);
         resolutionButton.setText("1366x768");
         stage.centerOnScreen();
+
+        ResolutionService.resolutionProperty().set(1366);
     }
     @FXML
     private void changeResulution1440x900() throws IOException
@@ -130,6 +138,8 @@ public class SettingsController {
         stage.setHeight(900);
         resolutionButton.setText("1440x900");
         stage.centerOnScreen();
+
+        ResolutionService.resolutionProperty().set(1440);
     }
     @FXML
     private void changeResulution1600x900() throws IOException
@@ -146,6 +156,8 @@ public class SettingsController {
         stage.setHeight(900);
         resolutionButton.setText("1600x900");
         stage.centerOnScreen();
+
+        ResolutionService.resolutionProperty().set(1600);
     }
 
     @FXML
@@ -163,6 +175,8 @@ public class SettingsController {
         stage.setHeight(1080);
         resolutionButton.setText("1920x1080");
         stage.centerOnScreen();
+
+        ResolutionService.resolutionProperty().set(1920);
     }
 
     @FXML
@@ -190,14 +204,19 @@ public class SettingsController {
             Fullscreen = 1;
             resolutionButton.setText((int)bounds.getWidth() + "x" + (int)bounds.getHeight());
 
+            ResolutionService.resolutionProperty().set(bounds.getWidth());
+
             fullscreenCheckbox.setSelected(true);
             singleton.setCheckboxState(true);
         } else {
             stage.setFullScreen(false);
             Fullscreen = 0;
             resolutionButton.setText("800x600");
+
             stage.setWidth(800);
             stage.setHeight(600);
+
+            ResolutionService.resolutionProperty().set(800);
 
             fullscreenCheckbox.setSelected(false);
             singleton.setCheckboxState(false);
