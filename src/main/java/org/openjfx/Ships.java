@@ -39,20 +39,20 @@ public class Ships extends Pane {
 
         
         setOnMouseReleased((MouseEvent me) -> {
-            //double newX = Math.round(getTranslateX() / 40) * 40 - 9;
-            //double newY = Math.round(getTranslateY() / 40) * 40;
-
             double gridX = grid.getGridPane().getLayoutX();
             double gridY = grid.getGridPane().getLayoutY();
-
+        
             double newX = Math.round((getTranslateX() - gridX) / cellSize) * cellSize + gridX;
             double newY = Math.round((getTranslateY() - gridY) / cellSize) * cellSize + gridY;
             
-            double gridWidth = gridX + 25 * cellSize;
-            double gridHeight = gridY + 25 * cellSize;
-
+            double gridWidth = gridX + 10 * cellSize;
+            double gridHeight = gridY + 9 * cellSize;
+        
+            // Get the ship size
+            double shipSize = rectangle.getWidth();
+        
             // Ensure the ship doesn't go outside the grid
-            if (newX >= gridX && newX < gridWidth && newY >= gridY && newY < gridHeight) {
+            if (newX >= gridX && newX + shipSize <= gridWidth && newY >= gridY && newY <= gridHeight) {
                 setTranslateX(newX);
                 setTranslateY(newY);
             } else {
@@ -62,11 +62,7 @@ public class Ships extends Pane {
             }
         });
 
-        rectangle.setOnKeyPressed((KeyEvent ke) -> {
-            if (ke.getCode() == KeyCode.R) {
-                rectangle.getTransforms().add(new Rotate(90, rectangle.getWidth()/2, rectangle.getHeight()/2));
-            }
-        });
+        
 
         getChildren().add(rectangle);
     }

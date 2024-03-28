@@ -2,6 +2,7 @@ package org.openjfx;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -18,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
 
 public class GameController implements Initializable{
     @FXML
@@ -47,22 +49,11 @@ public class GameController implements Initializable{
         grid = new Grid(anchorPane);
         grid.centerGridPane();
 
-
-        double cellSize = gridPane.getPrefWidth() / 40;
-        draggable = new Draggable(cellSize); // Create Draggable object here
-
-        ship = new Ships(0, 0, 40, 40, cellSize, grid);
-        //draggable.makeDraggable(ship);
+        ship = new Ships(0, 0, 80, 40, 40, grid);
 
         gridPane.getChildren().add(ship);
         gridPane.toFront();
 
-        ResolutionService.resolutionProperty().addListener((obs, oldVal, newVal) -> handleResolutionChange());
-    }
-
-    private void handleResolutionChange() {
-        double newCellSize = gridPane.getPrefWidth() / 10; // Assuming a 10x10 grid
-        ship.updateCellSize(newCellSize);
     }
 
     @FXML
