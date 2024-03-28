@@ -11,7 +11,7 @@
       <Pane fx:id="gridPane" prefHeight="400.0" prefWidth="600.0" />
       <StackPane fx:id="pane" accessibleRole="BUTTON" opacity="0.75" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@css/login.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" text="Button" translateY="20.0">
+            <Button mnemonicParsing="false" text="Edit profile" translateY="20.0">
                <rotationAxis>
                   <Point3D />
                </rotationAxis>

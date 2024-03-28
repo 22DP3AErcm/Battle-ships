@@ -19,40 +19,44 @@
             </Text>
          </children>
       </AnchorPane>
-      <TextField fx:id="username" layoutX="102.0" layoutY="167.0" prefHeight="39.0" prefWidth="192.0" promptText="Username" AnchorPane.bottomAnchor="394.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="167.0" />
-      <PasswordField fx:id="password" layoutX="102.0" layoutY="306.0" prefHeight="39.0" prefWidth="192.0" promptText="Password" AnchorPane.bottomAnchor="255.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="306.0" />
-      <PasswordField fx:id="password2" layoutX="102.0" layoutY="378.0" prefHeight="39.0" prefWidth="192.0" promptText="Confirm your password" AnchorPane.bottomAnchor="183.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="378.0" />
-      <TextField fx:id="email" layoutX="102.0" layoutY="235.0" prefHeight="39.0" prefWidth="192.0" promptText="Email" AnchorPane.bottomAnchor="326.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="235.0" />
-      <Text layoutX="102.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="192.0" AnchorPane.bottomAnchor="441.708984375" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="140.9716796875">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
-      <Text layoutX="102.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="192.0" AnchorPane.bottomAnchor="370.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="211.0">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
-      <Text layoutX="103.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="192.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="103.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="281.0">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
-      <Text layoutX="102.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm your password" wrappingWidth="192.0" AnchorPane.bottomAnchor="228.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="353.0">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
-      <Button layoutX="162.0" layoutY="430.0" mnemonicParsing="false" onAction="#register" styleClass="RegisterButton" stylesheets="@css/login.css" text="Register" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="430.0">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Hyperlink layoutX="176.0" layoutY="471.0" onAction="#goToLogin" text="Login">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Hyperlink>
-      <Text fx:id="DoNotMatch" fill="RED" layoutX="103.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwords do not match!" visible="false" wrappingWidth="286.0" />
+      <AnchorPane layoutX="80.0" layoutY="108.0" prefHeight="407.0" prefWidth="286.0">
+         <children>
+            <TextField fx:id="username" layoutX="22.0" layoutY="59.0" prefHeight="39.0" prefWidth="192.0" promptText="Username" />
+            <Text layoutX="23.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="192.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <PasswordField fx:id="password" layoutX="22.0" layoutY="198.0" prefHeight="39.0" prefWidth="192.0" promptText="Password" />
+            <Text layoutX="23.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="192.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <PasswordField fx:id="password2" layoutX="22.0" layoutY="270.0" prefHeight="39.0" prefWidth="192.0" promptText="Confirm your password" />
+            <Text layoutX="22.0" layoutY="259.9716796875" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm your password" wrappingWidth="192.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <TextField fx:id="email" layoutX="22.0" layoutY="127.0" prefHeight="39.0" prefWidth="192.0" promptText="Email" />
+            <Text layoutX="23.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="192.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <Button layoutX="83.0" layoutY="340.0" mnemonicParsing="false" onAction="#register" styleClass="RegisterButton" stylesheets="@css/login.css" text="Register">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Text fx:id="DoNotMatch" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwords do not match!" visible="false" wrappingWidth="286.0" />
+            <Hyperlink layoutX="97.0" layoutY="391.0" onAction="#goToLogin" text="Login">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

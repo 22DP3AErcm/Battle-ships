@@ -11,11 +11,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
 public class LoginController {
-    @FXML
-    private TextField email, password;
+    public static String account;
     
+    @FXML
+    public TextField email, password;
     
     @FXML
     private Text WrongLogin;
@@ -47,6 +47,7 @@ public class LoginController {
             }
             for (String[] strings : Data) {
                 if (strings[1].equals(emailText) && strings[2].equals(passwordText)) {
+                    account = strings[0] + ", " + strings[1] + ", " + strings[2];
                     login = true;
                     WrongLogin.setVisible(false);
                     break;

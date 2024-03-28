@@ -224,4 +224,11 @@ public class SettingsController {
 
         singleton.setFullscreenState(Fullscreen);
     }
+
+    @FXML
+    public void RemoveAccount() throws IOException
+    {
+        Stage stage = (Stage) resolution.getScene().getWindow();
+        CsvManeger.RemoveAccount(stage);
+    }
 }
