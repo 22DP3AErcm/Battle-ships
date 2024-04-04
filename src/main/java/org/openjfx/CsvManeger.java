@@ -45,6 +45,7 @@ public class CsvManeger {
             writer.newLine();
         }
         writer.close();
+        bufferedReader.close();
         App.setRoot("Login");
         stage.setWidth(400);
         stage.setHeight(600);

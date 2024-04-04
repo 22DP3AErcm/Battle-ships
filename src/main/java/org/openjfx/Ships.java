@@ -1,6 +1,5 @@
 package org.openjfx;
 
-import javafx.geometry.Rectangle2D;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -72,7 +71,7 @@ public class Ships extends Pane {
     }
 
     public void snapToGrid(){
-        double gridX = isRotated ? grid.getGridPane().getLayoutX() + 40: grid.getGridPane().getLayoutX();
+        double gridX = isRotated ? grid.getGridPane().getLayoutX() + 40 : grid.getGridPane().getLayoutX();
         double gridY = grid.getGridPane().getLayoutY();
     
         double newX = Math.round((getTranslateX() - gridX) / cellSize) * cellSize + gridX;
@@ -117,7 +116,7 @@ public class Ships extends Pane {
     }
 
     public boolean onShip() {
-        
+
         return false;
     }
         
