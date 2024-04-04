@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
@@ -69,7 +71,7 @@ public class GameController implements Initializable{
                         ship.setIsRotated(false);
                         ship.setRotation(0);
                     }
-                    ship.snapToGrid();
+                    ship.snapToGrid(ship);
                 }
             });
         
