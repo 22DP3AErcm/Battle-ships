@@ -1,12 +1,19 @@
 package org.openjfx;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -26,14 +33,12 @@ public class SettingsController {
     private Singleton singleton;
 
     @FXML
-    private void goToGame() throws IOException
-    {
+    private void goToGame() throws IOException {
         App.setRoot("Game");
     }
 
     @FXML
-    private void changeResulution800x600() throws IOException
-    {
+    private void changeResulution800x600() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
 
         stage.setFullScreen(false);
@@ -41,18 +46,17 @@ public class SettingsController {
 
         fullscreenCheckbox.setSelected(false);
         singleton.setCheckboxState(false);
-        
+
         stage.setWidth(800);
         stage.setHeight(600);
         resolutionButton.setText("800x600");
         stage.centerOnScreen();
-        
+
         ResolutionService.resolutionProperty().set(800);
     }
 
     @FXML
-    private void changeResulution1024x768() throws IOException
-    {
+    private void changeResulution1024x768() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
 
         stage.setFullScreen(false);
@@ -65,13 +69,12 @@ public class SettingsController {
         stage.setHeight(768);
         resolutionButton.setText("1024x768");
         stage.centerOnScreen();
-        
+
         ResolutionService.resolutionProperty().set(1024);
     }
 
     @FXML
-    private void changeResulution1280x720() throws IOException
-    {
+    private void changeResulution1280x720() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
 
         stage.setFullScreen(false);
@@ -87,9 +90,9 @@ public class SettingsController {
 
         ResolutionService.resolutionProperty().set(1280);
     }
+
     @FXML
-    private void changeResulution1280x800() throws IOException
-    {
+    private void changeResulution1280x800() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
 
         stage.setFullScreen(false);
@@ -105,9 +108,9 @@ public class SettingsController {
 
         ResolutionService.resolutionProperty().set(1280);
     }
+
     @FXML
-    private void changeResulution1366x768() throws IOException
-    {
+    private void changeResulution1366x768() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
 
         stage.setFullScreen(false);
@@ -123,9 +126,9 @@ public class SettingsController {
 
         ResolutionService.resolutionProperty().set(1366);
     }
+
     @FXML
-    private void changeResulution1440x900() throws IOException
-    {
+    private void changeResulution1440x900() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
 
         stage.setFullScreen(false);
@@ -141,9 +144,9 @@ public class SettingsController {
 
         ResolutionService.resolutionProperty().set(1440);
     }
+
     @FXML
-    private void changeResulution1600x900() throws IOException
-    {
+    private void changeResulution1600x900() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
 
         stage.setFullScreen(false);
@@ -161,8 +164,7 @@ public class SettingsController {
     }
 
     @FXML
-    private void changeResulution1920x1080() throws IOException
-    {
+    private void changeResulution1920x1080() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
 
         stage.setFullScreen(false);
@@ -189,12 +191,11 @@ public class SettingsController {
     @FXML
     private void handleCheckboxAction(ActionEvent event) {
         singleton.setCheckboxState(fullscreenCheckbox.isSelected());
-        
+
     }
 
     @FXML
-    private void changeResulutionFullscreen() throws IOException
-    {
+    private void changeResulutionFullscreen() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
@@ -202,7 +203,7 @@ public class SettingsController {
         if (Fullscreen == 0) {
             stage.setFullScreen(true);
             Fullscreen = 1;
-            resolutionButton.setText((int)bounds.getWidth() + "x" + (int)bounds.getHeight());
+            resolutionButton.setText((int) bounds.getWidth() + "x" + (int) bounds.getHeight());
 
             ResolutionService.resolutionProperty().set(bounds.getWidth());
 
@@ -226,9 +227,21 @@ public class SettingsController {
     }
 
     @FXML
-    public void RemoveAccount() throws IOException
-    {
+    public void RemoveAccount() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
         CsvManeger.RemoveAccount(stage);
+    }
+
+    @FXML
+    public void Confirmation() throws IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setHeaderText("Are you sure you want to delete your account?");
+
+        alert.initOwner((Stage) resolution.getScene().getWindow());
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            RemoveAccount();
+        }
     }
 }

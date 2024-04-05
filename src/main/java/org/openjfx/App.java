@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
 
 /**
@@ -17,19 +16,16 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-    
 
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Login"));
         stage.setScene(scene);
-        
-        
+
         Image icon = new Image("file:src\\main\\resources\\org\\openjfx\\Images\\Icon2done.png");
         stage.getIcons().add(icon);
         stage.setTitle("Battle ships");
         stage.setResizable(false);
-
 
         stage.show();
     }

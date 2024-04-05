@@ -43,7 +43,7 @@
          </font>
       </Text>
       <CheckBox fx:id="fullscreenCheckbox" layoutX="233.0" layoutY="136.0" mnemonicParsing="false" onAction="#changeResulutionFullscreen" />
-      <Button layoutX="266.0" layoutY="344.0" mnemonicParsing="false" onMouseReleased="#RemoveAccount" text="Delete" />
+      <Button layoutX="266.0" layoutY="344.0" mnemonicParsing="false" onMouseReleased="#Confirmation" text="Delete" />
       <Text fill="WHITE" layoutX="128.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete account:">
          <font>
             <Font name="System Bold" size="18.0" />
