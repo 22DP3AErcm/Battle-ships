@@ -27,6 +27,12 @@
                   <Font size="13.0" />
                </font>
             </Text>
+            <TextField fx:id="email" layoutX="22.0" layoutY="127.0" prefHeight="39.0" prefWidth="192.0" promptText="Email" />
+            <Text layoutX="23.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="192.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
             <PasswordField fx:id="password" layoutX="22.0" layoutY="198.0" prefHeight="39.0" prefWidth="192.0" promptText="Password" />
             <Text layoutX="23.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="192.0">
                <font>
@@ -35,12 +41,6 @@
             </Text>
             <PasswordField fx:id="password2" layoutX="22.0" layoutY="270.0" prefHeight="39.0" prefWidth="192.0" promptText="Confirm your password" />
             <Text layoutX="22.0" layoutY="259.9716796875" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm your password" wrappingWidth="192.0">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Text>
-            <TextField fx:id="email" layoutX="22.0" layoutY="127.0" prefHeight="39.0" prefWidth="192.0" promptText="Email" />
-            <Text layoutX="23.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="192.0">
                <font>
                   <Font size="13.0" />
                </font>
