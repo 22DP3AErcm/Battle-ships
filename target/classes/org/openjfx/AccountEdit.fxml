@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Register" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.SettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Register" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.AccountEditController">
    <children>
       <AnchorPane prefHeight="43.0" prefWidth="600.0" styleClass="anchor-pane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -15,7 +15,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
-            <Button layoutX="539.0" layoutY="7.0" mnemonicParsing="false" onAction="#goToGame" prefWidth="54.0" styleClass="Register" text="Game" textFill="WHITE" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
+            <Button layoutX="539.0" layoutY="7.0" mnemonicParsing="false" onMouseReleased="#goToGame" prefWidth="54.0" styleClass="Register" text="Game" textFill="WHITE" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" /> 
          </children>
       </AnchorPane>
       <Text fill="WHITE" layoutX="128.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
@@ -23,9 +23,9 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField layoutX="249.0" layoutY="119.0" />
-      <TextField layoutX="249.0" layoutY="182.0" />
-      <TextField layoutX="249.0" layoutY="239.0" />
+      <TextField fx:id="username" layoutX="249.0" layoutY="119.0" />
+      <TextField fx:id="email" layoutX="249.0" layoutY="182.0" />
+      <TextField fx:id="password" layoutX="249.0" layoutY="239.0" />
       <Text fill="WHITE" layoutX="167.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
          <font>
             <Font name="System Bold" size="18.0" />
