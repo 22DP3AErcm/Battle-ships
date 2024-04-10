@@ -87,10 +87,16 @@ public class GameController implements Initializable {
                             ship.setIsRotated(false);
                             ship.setRotation(0);
                         }
+
                     } else {
                         // If the new position is valid, update the ship's grid coordinates
                         List<String> gridCoordinates = ship.getGridCoordinates();
                         shipLocations.put(ship, gridCoordinates);
+                        PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.5));
+                        System.out.println("NEW");
+                        for (Ships s : shipLocations.keySet()) {
+                            System.out.println(s + " " + shipLocations.get(s));
+                        }
                     }
                 }
             });

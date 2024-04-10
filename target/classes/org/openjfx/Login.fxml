@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="Register" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.LoginController">
+   <children>
+      <AnchorPane prefHeight="50.0" prefWidth="400.0" styleClass="anchor-pane">
+         <children>
+            <Text fill="WHITE" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="396.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="102.0" layoutY="181.0">
+         <children>
+            <Text layoutY="42.9716796875" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="192.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <TextField fx:id="email" layoutY="54.0" onAction="#login" prefHeight="39.0" prefWidth="192.0" promptText="Email" />
+            <Text layoutY="117.9716796875" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="192.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <PasswordField fx:id="password" layoutY="125.0" prefHeight="39.0" prefWidth="192.0" promptText="Password" />
+      
+                        <Button layoutX="69.0" layoutY="189.0" mnemonicParsing="false" onAction="#login" styleClass="RegisterButton" stylesheets="@css/login.css" text="Login">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Hyperlink layoutX="35.0" layoutY="237.0" onAction="#goToRegister" text="Create an account">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+            <Text fx:id="WrongLogin" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorect password or email" visible="false" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
