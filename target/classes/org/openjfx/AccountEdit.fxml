@@ -23,9 +23,9 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="username" layoutX="249.0" layoutY="119.0" />
-      <TextField fx:id="email" layoutX="249.0" layoutY="182.0" />
-      <TextField fx:id="password" layoutX="249.0" layoutY="239.0" />
+      <TextField fx:id="username" Text="HELLO" layoutX="249.0" layoutY="119.0" />
+      <TextField fx:id="email" Text="HELLO" layoutX="249.0" layoutY="182.0" />
+      <TextField fx:id="password" Text="HELLO" layoutX="249.0" layoutY="239.0" />
       <Text fill="WHITE" layoutX="167.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -36,5 +36,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
+      <Button layoutX="231.0" layoutY="310.0" mnemonicParsing="false" onMouseReleased="#rewriteAccount" styleClass="RegisterButton" text="Change Account Info" />
+      <Text fx:id="DoNotMatch" layoutX="289.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Register" text="Text" />
    </children>
 </AnchorPane>

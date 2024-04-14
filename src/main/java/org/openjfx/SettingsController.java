@@ -5,13 +5,10 @@ import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
-import javafx.scene.image.Image;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.text.Text;
@@ -228,8 +225,12 @@ public class SettingsController {
 
     @FXML
     public void RemoveAccount() throws IOException {
+        CsvManeger.RemoveAccount();
         Stage stage = (Stage) resolution.getScene().getWindow();
-        CsvManeger.RemoveAccount(stage);
+        App.setRoot("Login");
+        stage.setWidth(400);
+        stage.setHeight(600);
+        stage.centerOnScreen();
     }
 
     @FXML
