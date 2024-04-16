@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 public class AccountEditController {
 
     String[] account = LoginController.account.split(", ");
-    
+
     @FXML
     private Text DoNotMatch;
 
@@ -27,7 +27,10 @@ public class AccountEditController {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        if (LoginController.account == "a, a, a") {
+            App.setRoot("AccountEditAdmin");
+        }
         username.setText(account[0]);
         email.setText(account[1]);
         password.setText(account[2]);
@@ -36,9 +39,6 @@ public class AccountEditController {
     @FXML
     private void rewriteAccount() throws IOException {
         String passwordText = password.getText();
-        
-
-
 
         // Visiem logiem jābūt aizpildītiem
         if (username.getText().isEmpty() || email.getText().isEmpty() || password.getText().isEmpty()) {
@@ -82,8 +82,7 @@ public class AccountEditController {
         while ((line = bufferedReader.readLine()) != null) {
             Data.add(line);
         }
-        if (!Data.contains(username.getText() + ", " + email.getText() + ", " + password.getText()))
-        {
+        if (!Data.contains(username.getText() + ", " + email.getText() + ", " + password.getText())) {
             CsvManeger.RemoveAccount();
             CsvManeger.addDataToCSV(username.getText(), email.getText(), password.getText());
             LoginController.account = username.getText() + ", " + email.getText() + ", " + password.getText();
