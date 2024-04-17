@@ -46,7 +46,18 @@ public class CsvManeger {
         }
         writer.close();
         bufferedReader.close();
-        
     }
 
+    public static List<String[]> getAllAccountList() throws IOException
+    {
+        FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv");
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        List<String[]> Data = new ArrayList<String[]>();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            Data.add(line.split(", "));
+        }
+        bufferedReader.close();
+        return Data;
+    }
 } 

@@ -17,12 +17,12 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
-            <Button layoutX="539.0" layoutY="7.0" mnemonicParsing="false" onMouseReleased="#goToGame" prefWidth="54.0" styleClass="Register" text="Game" textFill="WHITE" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
+            <Button layoutX="539.0" layoutY="7.0" mnemonicParsing="false" onAction="#goToGame" prefWidth="54.0" styleClass="Register" text="Game" textFill="WHITE" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
          </children>
       </AnchorPane>
       <ScrollPane layoutX="113.0" layoutY="89.0" prefHeight="229.0" prefWidth="370.0">
          <content>
-            <TableView prefHeight="229.0" prefWidth="355.0">
+            <TableView fx:id="table" prefHeight="229.0" prefWidth="355.0">
               <columns>
                 <TableColumn fx:id="username" prefWidth="100.0" text="Username" />
                 <TableColumn fx:id="email" prefWidth="96.0" text="Email" />
@@ -37,6 +37,6 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Button layoutX="322.0" layoutY="336.0" mnemonicParsing="false" styleClass="RegisterButton" text="Save" />
+      <Button fx:id="save" layoutX="322.0" layoutY="336.0" mnemonicParsing="false" styleClass="RegisterButton" text="Save" />
    </children>
 </AnchorPane>

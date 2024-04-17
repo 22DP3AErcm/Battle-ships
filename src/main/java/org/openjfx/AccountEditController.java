@@ -28,9 +28,6 @@ public class AccountEditController {
 
     @FXML
     public void initialize() throws IOException {
-        if (LoginController.account == "a, a, a") {
-            App.setRoot("AccountEditAdmin");
-        }
         username.setText(account[0]);
         email.setText(account[1]);
         password.setText(account[2]);
