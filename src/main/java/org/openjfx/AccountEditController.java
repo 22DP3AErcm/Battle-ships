@@ -1,7 +1,6 @@
 package org.openjfx;
 
 import java.io.IOException;
-import java.io.ObjectInputStream.GetField;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
