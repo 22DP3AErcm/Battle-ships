@@ -15,8 +15,7 @@ public class RegisterController {
     private TextField username, password, password2, email;
     @FXML
     private Text DoNotMatch;
-    
-    CsvManeger CsvManeger = new CsvManeger();
+
     Sorter Sorter = new Sorter();
 
     @FXML

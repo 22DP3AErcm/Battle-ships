@@ -224,8 +224,12 @@ public class SettingsController {
 
     @FXML
     public void RemoveAccount() throws IOException {
+        CsvManeger.RemoveAccount();
         Stage stage = (Stage) resolution.getScene().getWindow();
-        CsvManeger.RemoveAccount(stage);
+        App.setRoot("Login");
+        stage.setWidth(400);
+        stage.setHeight(600);
+        stage.centerOnScreen();
     }
 
     @FXML

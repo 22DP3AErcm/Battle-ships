@@ -107,7 +107,13 @@ public class GameController implements Initializable {
 
     @FXML
     public void goToAccountEdit() throws IOException {
-        App.setRoot("AccountEdit");
-        AccountEditController.setText();
+        if (LoginController.account.equals("a, a, a")) {
+            App.setRoot("AccountEditAdmin");
+        }
+        else
+        {
+            System.out.println(LoginController.account);
+            App.setRoot("AccountEdit");
+        }
     }
 }

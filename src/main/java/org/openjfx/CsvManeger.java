@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 
 
 public class CsvManeger {
-    
-    public void addDataToCSV(String username, String email, String password) {
+
+    public static void addDataToCSV(String username, String email, String password) {
         try(FileWriter outputfile = new FileWriter("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv", true)) { 
                  
             BufferedWriter writer = new BufferedWriter(outputfile); 
@@ -24,7 +24,7 @@ public class CsvManeger {
     }
     
     @FXML
-    public static void RemoveAccount(Stage stage) throws IOException
+    public static void RemoveAccount() throws IOException
     {
         FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv");
         BufferedReader bufferedReader = new BufferedReader(reader);
@@ -46,10 +46,18 @@ public class CsvManeger {
         }
         writer.close();
         bufferedReader.close();
-        App.setRoot("Login");
-        stage.setWidth(400);
-        stage.setHeight(600);
-        stage.centerOnScreen();
     }
 
+    public static List<String[]> getAllAccountList() throws IOException
+    {
+        FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv");
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        List<String[]> Data = new ArrayList<String[]>();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            Data.add(line.split(", "));
+        }
+        bufferedReader.close();
+        return Data;
+    }
 } 
