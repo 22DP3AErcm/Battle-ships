@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public class GameController implements Initializable {
     @FXML
@@ -22,7 +23,10 @@ public class GameController implements Initializable {
     @FXML
     private Button settingButton;
     private int button = 0;
-
+    @FXML
+    private VBox mainVBox;
+    @FXML
+    private Button startGame;
     @FXML
     private AnchorPane anchorPane;
 
@@ -41,9 +45,11 @@ public class GameController implements Initializable {
 
     // Create a map to store each ship and its grid coordinates
     private static Map<Ships, List<String>> shipLocations = new HashMap<>();
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        mainVBox.prefWidthProperty().bind(anchorPane.widthProperty());
+        startGame.setDisable(true);
         grid = new Grid(anchorPane);
         grid.centerGridPane();
 
@@ -51,40 +57,36 @@ public class GameController implements Initializable {
             Ships ship = new Ships(0, 0, width, 40, 40, grid, shipLocations);
             ships.add(ship);
             grid.addShip(ship);
-            gridPane.getChildren().add(ship);
+            anchorPane.getChildren().add(ship);
             
             ship.setOnKeyPressed(event -> {
                 ship.rotateShip(event);
-        
+                
                 // Update the shipLocations map
                 List<String> gridCoordinates = ship.getGridCoordinates();
                 shipLocations.put(ship, gridCoordinates);
-        
-                System.out.println("NEW");
-                for (Ships s : shipLocations.keySet()) {
-                    System.out.println(s + " " + shipLocations.get(s));
-                }
             });
             
 
 
             ship.setOnMouseReleased(event -> {
                 ship.snapToGrid(ship);
-                
-                if (ship.isWithinGrid()){
-                    System.out.println("NEW");
-                
+
+                if (ship.isWithinGrid()) {
                     List<String> gridCoordinates = ship.getGridCoordinates();
                     shipLocations.put(ship, gridCoordinates);
-                                    
-                    for (Ships s : shipLocations.keySet()) {
-                        System.out.println(s + " " + shipLocations.get(s));
-                    }
                 }
-            });         
+
+                if (shipLocations.size() == 9) {
+                    startGame.setDisable(false);
+                    startGame.getStyleClass().add("RegisterButton");
+                }
+            });
         }
 
-        gridPane.toFront();
+        startGame.setOnAction(event ->{
+            System.out.println("Game Started");
+        });
     }
 
     @FXML

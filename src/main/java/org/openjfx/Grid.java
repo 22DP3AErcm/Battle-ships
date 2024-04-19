@@ -43,6 +43,8 @@ public class Grid {
         anchorPane.heightProperty().addListener((obs, oldVal, newVal) -> centerGridPane());
 
         anchorPane.getChildren().add(gridPane);
+        
+        gridPane.toBack();
     }
 
     public void centerGridPane() {

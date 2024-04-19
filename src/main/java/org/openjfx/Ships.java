@@ -259,7 +259,6 @@ public class Ships extends Pane {
                 rectangle.getTransforms().add(new Rotate(90, 20, 20));
                 this.setIsRotated(true);
                 this.setRotation(1);
-                System.out.println("Pagriez " + this.isWithinGrid());
             } else {
                 this.setIsRotated(false);
                 this.setRotation(0);
@@ -275,7 +274,6 @@ public class Ships extends Pane {
                 shipLocations.put(this, newGridCoordinates);
             } else {
                 // If the new position is not valid, revert the rotation and position
-                System.out.println("Invalid rotation");
                 if (oldRotation == 0) {
                     rectangle.getTransforms().clear();
                     rectangle.getTransforms().add(new Rotate(0, 20, 20));
@@ -288,9 +286,6 @@ public class Ships extends Pane {
                     this.setRotation(1);
                 }
             }
-            System.out.println(this.isWithinGrid());
-            System.out.println(this.onShip());
-            System.out.println(this.areShipsAdjacent());
         }
     }
     

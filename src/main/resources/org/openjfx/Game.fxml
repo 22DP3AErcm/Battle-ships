@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.GameController">
    <children>
-      <Pane fx:id="gridPane" prefHeight="400.0" prefWidth="600.0" />
+      <Button fx:id="settingButton" mnemonicParsing="false" onAction="#panevisable" text="Button" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <StackPane fx:id="pane" accessibleRole="BUTTON" opacity="0.75" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@css/login.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button mnemonicParsing="false" onMouseReleased="#goToAccountEdit" text="Edit profile" translateY="20.0">
@@ -23,6 +27,22 @@
             </Button>
          </children>
       </StackPane>
-      <Button fx:id="settingButton" mnemonicParsing="false" onAction="#panevisable" text="Button" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane fx:id="gridPane" layoutY="331.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <VBox fx:id="mainVBox" alignment="BOTTOM_CENTER" layoutY="338.0" prefHeight="62.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="77.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="startGame" disable="true" mnemonicParsing="false" text="Start">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
