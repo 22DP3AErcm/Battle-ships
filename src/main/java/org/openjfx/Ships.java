@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Rotate;
 
 
 public class Ships extends Pane {
@@ -36,39 +35,20 @@ public class Ships extends Pane {
             mouseY = me.getSceneY();
             oldX = getTranslateX();
             oldY = getTranslateY();
-        });
-
-        rectangle.setOnMousePressed((MouseEvent me) -> {
-            mouseX = me.getSceneX();
-            mouseY = me.getSceneY();
-            oldX = getTranslateX();
-            oldY = getTranslateY();
-            this.requestFocus();
+            requestFocus();
         });
         
-        rectangle.setOnMouseDragged((MouseEvent me) -> {
-            double deltaX = me.getSceneX() - mouseX;
-            double deltaY = me.getSceneY() - mouseY;
-            if (isRotated) {
-                // Adjust the position of the ship based on its rotation
-                double angle = Math.toRadians(rotation);
-                double rotatedDeltaX = deltaX * Math.cos(angle) - deltaY * Math.sin(angle);
-                double rotatedDeltaY = deltaX * Math.sin(angle) + deltaY * Math.cos(angle);
-                setTranslateX(oldX + rotatedDeltaX);
-                setTranslateY(oldY + rotatedDeltaY);
-            } else {
-                setTranslateX(oldX + deltaX);
-                setTranslateY(oldY + deltaY);
-            }
+        rectangle.setOnMouseDragged((MouseEvent me) -> {     
+            double offsetX = me.getSceneX() - mouseX;
+            double offsetY = me.getSceneY() - mouseY;
+            setTranslateX(oldX + offsetX);
+            setTranslateY(oldY + offsetY);
         });
 
         
         setOnMouseReleased((MouseEvent me) -> {
             snapToGrid(this);
-            this.getParent().requestFocus();
         });
-
-        
 
         getChildren().add(rectangle);
     }
@@ -97,7 +77,6 @@ public class Ships extends Pane {
         return isRotated;
     }
 
-
     
     public void snapToGrid(Ships ship){
         double gridX = grid.getGridPane().getLayoutX();
@@ -107,8 +86,8 @@ public class Ships extends Pane {
         double newY = Math.round((getTranslateY() - gridY) / cellSize) * cellSize + gridY;
     
         // Get the ship size in terms of cells
-        int shipSizex = (int) ((isRotated ? rectangle.getHeight() : rectangle.getWidth()) / cellSize);
-        int shipSizey = (int) ((isRotated ? rectangle.getWidth() : rectangle.getHeight()) / cellSize);
+        int shipSizex = (int) ((rectangle.getWidth()) / cellSize);
+        int shipSizey = (int) ((rectangle.getHeight()) / cellSize);
     
         // Adjust the grid boundaries based on the rotation of the ship
         double gridWidth = gridX + (9 - shipSizex) * cellSize;
@@ -120,29 +99,16 @@ public class Ships extends Pane {
             setTranslateY(newY);
         } else {
             // If the ship is dragged outside the grid, revert to the original position
-            double oldGridWidth = gridX + (9 - (int) ((isRotated ? rectangle.getHeight() : rectangle.getWidth()) / cellSize)) * cellSize;
-            double oldGridHeight = gridY + (9 - (int) ((isRotated ? rectangle.getWidth() : rectangle.getHeight()) / cellSize)) * cellSize;
-    
+            double oldGridWidth = gridX + (9 - (int) ((rectangle.getWidth()) / cellSize)) * cellSize;
+            double oldGridHeight = gridY + (9 - (int) ((rectangle.getHeight()) / cellSize)) * cellSize;
+        
             if (oldX >= gridX && oldX <= oldGridWidth && oldY >= gridY && oldY <= oldGridHeight && !onShip() && !areShipsAdjacent()) {
                 setTranslateX(oldX);
                 setTranslateY(oldY);
             } else {
-                // If the old position is outside the grid, snap the ship back to the nearest valid grid position
-                double snappedX = Math.max(gridX, Math.min(oldX, oldGridWidth));
-                double snappedY = Math.max(gridY, Math.min(oldY, oldGridHeight));
-    
-                // Temporarily update the ship's position
-                setTranslateX(snappedX);
-                setTranslateY(snappedY);
-    
-                // Check if the new position is on another ship or adjacent to another ship
-                if (!onShip() && !areShipsAdjacent()) {
-                    // The new position is valid, so do nothing
-                } else {
-                    // The new position is invalid, so revert to the old position
-                    setTranslateX(oldX);
-                    setTranslateY(oldY);
-                }
+                // The new position is invalid, so revert to the old position
+                setTranslateX(oldX);
+                setTranslateY(oldY);
             }
         }
     }
@@ -232,8 +198,8 @@ public class Ships extends Pane {
         double newX = Math.round((getTranslateX() - gridX) / cellSize) * cellSize + gridX;
         double newY = Math.round((getTranslateY() - gridY) / cellSize) * cellSize + gridY;
 
-        int shipSizex = (int) ((isRotated ? rectangle.getHeight() : rectangle.getWidth()) / cellSize);
-        int shipSizey = (int) ((isRotated ? rectangle.getWidth() : rectangle.getHeight()) / cellSize);
+        int shipSizex = (int) ((rectangle.getWidth()) / cellSize);
+        int shipSizey = (int) ((rectangle.getHeight()) / cellSize);
 
         List<String> gridCoordinates = new ArrayList<>();
         for (int i = 0; i < shipSizex; i++) {
@@ -253,10 +219,15 @@ public class Ships extends Pane {
             // Save the current rotation and position
             int oldRotation = this.getRotation();
     
-            // Rotate the ship
-            rectangle.getTransforms().clear();
+            // Save the current width and height
+            double oldWidth = rectangle.getWidth();
+            double oldHeight = rectangle.getHeight();
+    
+            // Rotate the ship by swapping its width and height
+            rectangle.setWidth(oldHeight);
+            rectangle.setHeight(oldWidth);
+    
             if (oldRotation == 0) {
-                rectangle.getTransforms().add(new Rotate(90, 20, 20));
                 this.setIsRotated(true);
                 this.setRotation(1);
             } else {
@@ -274,14 +245,13 @@ public class Ships extends Pane {
                 shipLocations.put(this, newGridCoordinates);
             } else {
                 // If the new position is not valid, revert the rotation and position
+                rectangle.setWidth(oldWidth);
+                rectangle.setHeight(oldHeight);
+    
                 if (oldRotation == 0) {
-                    rectangle.getTransforms().clear();
-                    rectangle.getTransforms().add(new Rotate(0, 20, 20));
                     this.setIsRotated(false);
                     this.setRotation(0);
                 } else {
-                    rectangle.getTransforms().clear();
-                    rectangle.getTransforms().add(new Rotate(90, 20, 20));
                     this.setIsRotated(true);
                     this.setRotation(1);
                 }
@@ -297,14 +267,19 @@ public class Ships extends Pane {
         double newX = Math.round((getTranslateX() - gridX) / cellSize) * cellSize + gridX;
         double newY = Math.round((getTranslateY() - gridY) / cellSize) * cellSize + gridY;
     
-        double gridWidth = gridX + (9) * cellSize;
-        double gridHeight = gridY + (9) * cellSize;
+        // Get the ship size in terms of cells
+        int shipSizex = (int) ((rectangle.getWidth()) / cellSize);
+        int shipSizey = (int) ((rectangle.getHeight()) / cellSize);
     
-        // Calculate the ship's width and height
-        double shipWidth = isRotated ? this.getHeight() : this.getWidth();
-        double shipHeight = isRotated ? this.getWidth() : this.getHeight();
+        // Adjust the grid boundaries based on the rotation of the ship
+        double gridWidth = gridX + (9 - shipSizex) * cellSize;
+        double gridHeight = gridY + (9 - shipSizey) * cellSize;
     
-        // Use newX, newY, shipWidth and shipHeight in the return statement
-        return newX >= gridX && newX + shipWidth <= gridWidth && newY >= gridY && newY + shipHeight <= gridHeight;
+        // Ensure the ship doesn't go outside the grid
+        if (newX >= gridX && newX <= gridWidth && newY >= gridY && newY <= gridHeight) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

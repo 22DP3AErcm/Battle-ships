@@ -65,6 +65,14 @@ public class GameController implements Initializable {
                 // Update the shipLocations map
                 List<String> gridCoordinates = ship.getGridCoordinates();
                 shipLocations.put(ship, gridCoordinates);
+
+                System.out.println("New");
+                //pritnts all ships in shipLocations
+                for (Map.Entry<Ships, List<String>> entry : shipLocations.entrySet()) {
+                    Ships key = entry.getKey();
+                    List<String> value = entry.getValue();
+                    System.out.println(key + " " + value);
+                }
             });
             
 
@@ -75,6 +83,14 @@ public class GameController implements Initializable {
                 if (ship.isWithinGrid()) {
                     List<String> gridCoordinates = ship.getGridCoordinates();
                     shipLocations.put(ship, gridCoordinates);
+
+                    //pritnts all ships in shipLocations
+                    System.out.println("New");
+                    for (Map.Entry<Ships, List<String>> entry : shipLocations.entrySet()) {
+                        Ships key = entry.getKey();
+                        List<String> value = entry.getValue();
+                        System.out.println(key + " " + value);
+                    }
                 }
 
                 if (shipLocations.size() == 9) {
