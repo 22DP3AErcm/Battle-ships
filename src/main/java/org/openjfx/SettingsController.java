@@ -16,6 +16,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class SettingsController {
+    public static int[] currentResolution = {0, 0};
     @FXML
     private Text resolution;
 
@@ -49,7 +50,10 @@ public class SettingsController {
         resolutionButton.setText("800x600");
         stage.centerOnScreen();
 
+
         ResolutionService.resolutionProperty().set(800);
+        currentResolution[0] = 800;
+        currentResolution[1] = 600;
     }
 
     @FXML
@@ -68,6 +72,8 @@ public class SettingsController {
         stage.centerOnScreen();
 
         ResolutionService.resolutionProperty().set(1024);
+        currentResolution[0] = 1024;
+        currentResolution[1] = 768;
     }
 
     @FXML
@@ -86,6 +92,8 @@ public class SettingsController {
         stage.centerOnScreen();
 
         ResolutionService.resolutionProperty().set(1280);
+        currentResolution[0] = 1280;
+        currentResolution[1] = 720;
     }
 
     @FXML
@@ -104,6 +112,8 @@ public class SettingsController {
         stage.centerOnScreen();
 
         ResolutionService.resolutionProperty().set(1280);
+        currentResolution[0] = 1280;
+        currentResolution[1] = 800;
     }
 
     @FXML
@@ -122,6 +132,8 @@ public class SettingsController {
         stage.centerOnScreen();
 
         ResolutionService.resolutionProperty().set(1366);
+        currentResolution[0] = 1366;
+        currentResolution[1] = 780;
     }
 
     @FXML
@@ -140,6 +152,8 @@ public class SettingsController {
         stage.centerOnScreen();
 
         ResolutionService.resolutionProperty().set(1440);
+        currentResolution[0] = 1440;
+        currentResolution[1] = 900;
     }
 
     @FXML
@@ -158,6 +172,8 @@ public class SettingsController {
         stage.centerOnScreen();
 
         ResolutionService.resolutionProperty().set(1600);
+        currentResolution[0] = 1600;
+        currentResolution[1] = 900;
     }
 
     @FXML
@@ -176,6 +192,8 @@ public class SettingsController {
         stage.centerOnScreen();
 
         ResolutionService.resolutionProperty().set(1920);
+        currentResolution[0] = 1920;
+        currentResolution[1] = 1080;
     }
 
     @FXML
@@ -183,6 +201,8 @@ public class SettingsController {
         singleton = Singleton.getInstance();
         fullscreenCheckbox.setSelected(singleton.getCheckboxState());
         Fullscreen = Singleton.getInstance().getFullscreenState();
+        currentResolution[0] = 800;
+        currentResolution[1] = 600;
     }
 
     @FXML
@@ -205,6 +225,8 @@ public class SettingsController {
 
             fullscreenCheckbox.setSelected(true);
             singleton.setCheckboxState(true);
+            currentResolution[0] = (int)stage.getWidth();
+            currentResolution[1] = (int)stage.getHeight();
         } else {
             stage.setFullScreen(false);
             Fullscreen = 0;
@@ -217,6 +239,8 @@ public class SettingsController {
 
             fullscreenCheckbox.setSelected(false);
             singleton.setCheckboxState(false);
+            currentResolution[0] = 800;
+            currentResolution[1] = 600;
         }
 
         singleton.setFullscreenState(Fullscreen);

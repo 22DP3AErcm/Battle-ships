@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class GameController implements Initializable {
     @FXML
@@ -55,7 +56,7 @@ public class GameController implements Initializable {
 
         if (shipLocations.size() == 9)
         {
-            drawShipsFromMap();
+            drawShipsFromMap(shipLocations);
             startGame.setDisable(false);
             startGame.getStyleClass().add("RegisterButton");
         }
@@ -115,10 +116,9 @@ public class GameController implements Initializable {
             });
         }
 }
-public void drawShipsFromMap() {
-
+public void drawShipsFromMap(Map<Ships, List<String>> objectLocations) {
     // Iterate over the shipLocations map entries
-    for (Map.Entry<Ships, List<String>> entry : shipLocations.entrySet()) {
+    for (Map.Entry<Ships, List<String>> entry : objectLocations.entrySet()) {
         Ships ship = entry.getKey();
         List<String> gridCoordinates = entry.getValue();
 
@@ -126,12 +126,12 @@ public void drawShipsFromMap() {
         for (String coordinate : gridCoordinates) {
             // Convert grid coordinate to pixel position
             int[] xy = ship.convertCoordinate(coordinate);
-            int x = Math.round(xy[0] / 40) * 40;
-            int y = Math.round(xy[1] / 40) * 40;
+            int x = Math.round(xy[0] / 40) * 40 + (SettingsController.currentResolution[0]-360)/2 - 220;
+            int y = Math.round(xy[1] / 40) * 40 + (SettingsController.currentResolution[1]-360)/2 - 120;
 
             // Set ship's position
-            ship.setLayoutX(x);//- (anchorPane.getWidth()-360)/2);
-            ship.setLayoutY(y);//- (anchorPane.getHeight()-360)/2);
+            ship.setLayoutX(x);
+            ship.setLayoutY(y);
 
             // Add the ship to the anchor pane if it's not already a child
             if (!anchorPane.getChildren().contains(ship)) {
