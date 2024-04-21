@@ -53,12 +53,15 @@ public class GameController implements Initializable {
         grid = new Grid(anchorPane);
         grid.centerGridPane();
 
-        if (shipLocations.size() > 0)
+        if (shipLocations.size() == 9)
         {
             drawShipsFromMap();
+            startGame.setDisable(false);
+            startGame.getStyleClass().add("RegisterButton");
         }
         else
         {
+            shipLocations.clear();
             for (Integer width : shipWidths) {
                 Ships ship = new Ships(0, 0, width, 40, 40, grid, shipLocations);
                 ships.add(ship);
@@ -81,7 +84,6 @@ public class GameController implements Initializable {
                     }
                 }
                 );
-                System.out.println(shipLocations);
                 
 
 
@@ -124,13 +126,12 @@ public void drawShipsFromMap() {
         for (String coordinate : gridCoordinates) {
             // Convert grid coordinate to pixel position
             int[] xy = ship.convertCoordinate(coordinate);
-            int x = xy[0] * 40;
-            int y = xy[1] * 40;
+            int x = Math.round(xy[0] / 40) * 40;
+            int y = Math.round(xy[1] / 40) * 40;
 
-            System.out.println(x + " | " + y);
             // Set ship's position
-            ship.setLayoutX(x );//- (anchorPane.getWidth()-360)/2);
-            ship.setLayoutY(y );//- (anchorPane.getHeight()-360)/2);
+            ship.setLayoutX(x);//- (anchorPane.getWidth()-360)/2);
+            ship.setLayoutY(y);//- (anchorPane.getHeight()-360)/2);
 
             // Add the ship to the anchor pane if it's not already a child
             if (!anchorPane.getChildren().contains(ship)) {
