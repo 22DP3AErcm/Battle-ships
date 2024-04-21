@@ -24,7 +24,7 @@ public class CsvManeger {
     }
     
     @FXML
-    public static void RemoveAccount() throws IOException
+    public static void RemoveAccount(String account) throws IOException
     {
         FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv");
         BufferedReader bufferedReader = new BufferedReader(reader);
@@ -35,7 +35,7 @@ public class CsvManeger {
             Data.add(line);
         }
         
-        Data.remove(LoginController.account);
+        Data.remove(account);
         
         FileWriter fileWriter = new FileWriter("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv");
         BufferedWriter writer = new BufferedWriter(fileWriter);
@@ -48,14 +48,14 @@ public class CsvManeger {
         bufferedReader.close();
     }
 
-    public static List<String[]> getAllAccountList() throws IOException
+    public static List<String> getAllAccountList() throws IOException
     {
         FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv");
         BufferedReader bufferedReader = new BufferedReader(reader);
-        List<String[]> Data = new ArrayList<String[]>();
+        List<String> Data = new ArrayList<String>();
         String line;
         while ((line = bufferedReader.readLine()) != null) {
-            Data.add(line.split(", "));
+            Data.add(line);
         }
         bufferedReader.close();
         return Data;

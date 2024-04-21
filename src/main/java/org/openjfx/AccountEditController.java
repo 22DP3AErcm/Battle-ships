@@ -82,7 +82,7 @@ public class AccountEditController {
             Data.add(line);
         }
         if (!Data.contains(username.getText() + ", " + email.getText() + ", " + password.getText())) {
-            CsvManeger.RemoveAccount();
+            CsvManeger.RemoveAccount(LoginController.account);
             CsvManeger.addDataToCSV(username.getText(), email.getText(), password.getText());
             LoginController.account = username.getText() + ", " + email.getText() + ", " + password.getText();
         }

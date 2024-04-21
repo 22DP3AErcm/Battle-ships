@@ -44,7 +44,7 @@
                   <Font size="14.0" />
                </font>
             </Hyperlink>
-            <Text fx:id="WrongLogin" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorect password or email" visible="false" />
+            <Text fx:id="WrongLogin" fill="#940101" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorect password or email" visible="false" />
          </children>
       </AnchorPane>
    </children>

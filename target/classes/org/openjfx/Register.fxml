@@ -50,7 +50,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Text fx:id="DoNotMatch" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwords do not match!" visible="false" wrappingWidth="286.0" />
+            <Text fx:id="DoNotMatch" fill="#940101" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwords do not match!" visible="false" wrappingWidth="286.0" />
             <Hyperlink layoutX="97.0" layoutY="391.0" onAction="#goToLogin" text="Login">
                <font>
                   <Font size="14.0" />

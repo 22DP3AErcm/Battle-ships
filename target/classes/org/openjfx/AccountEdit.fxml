@@ -37,6 +37,6 @@
          </font>
       </Text>
       <Button layoutX="231.0" layoutY="310.0" mnemonicParsing="false" onMouseReleased="#rewriteAccount" styleClass="RegisterButton" text="Change Account Info" />
-      <Text fx:id="DoNotMatch" layoutX="289.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Register" text="Text" />
+      <Text fx:id="DoNotMatch" fill="#940101" layoutX="289.0" layoutY="105.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Register" text="Text" visible="false" />
    </children>
 </AnchorPane>

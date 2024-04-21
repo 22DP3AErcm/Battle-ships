@@ -1,42 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Register" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.AccountEditAdminController">
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Register" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.AccountEditAdminController">
    <children>
-      <AnchorPane prefHeight="43.0" prefWidth="600.0" styleClass="anchor-pane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="vbox" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Text fill="WHITE" layoutX="179.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Account (Admin)">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <Button layoutX="539.0" layoutY="7.0" mnemonicParsing="false" onAction="#goToGame" prefWidth="54.0" styleClass="Register" text="Game" textFill="WHITE" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
-         </children>
-      </AnchorPane>
-      <ScrollPane layoutX="113.0" layoutY="89.0" prefHeight="229.0" prefWidth="370.0">
-         <content>
-            <TableView fx:id="table" prefHeight="229.0" prefWidth="355.0">
+            <AnchorPane prefHeight="43.0" prefWidth="600.0" styleClass="anchor-pane">
+               <children>
+                  <Text fill="WHITE" layoutX="179.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Account (Admin)">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="539.0" layoutY="7.0" mnemonicParsing="false" onAction="#goToGame" prefWidth="54.0" styleClass="Register" text="Game" textFill="WHITE" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
+               </children>
+            </AnchorPane>
+            <TableView fx:id="table" prefHeight="250.0" prefWidth="442.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="username" prefWidth="100.0" text="Username" />
-                <TableColumn fx:id="email" prefWidth="96.0" text="Email" />
-                  <TableColumn fx:id="password" prefWidth="98.0" text="Password" />
-                  <TableColumn fx:id="remove" prefWidth="60.0" />
+                <TableColumn fx:id="username" prefWidth="189.0" text="Username" />
+                <TableColumn fx:id="email" prefWidth="176.0" text="Email" />
+                  <TableColumn fx:id="password" prefWidth="146.0" text="Password" />
+                  <TableColumn fx:id="remove" minWidth="4.0" prefWidth="88.0" />
               </columns>
+               <VBox.margin>
+                  <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
             </TableView>
-         </content>
-      </ScrollPane>
-      <Text fill="WHITE" layoutX="113.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm changes:">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Text>
-      <Button fx:id="save" layoutX="322.0" layoutY="336.0" mnemonicParsing="false" styleClass="RegisterButton" text="Save" />
+            <AnchorPane prefHeight="86.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="refresh" layoutX="312.0" layoutY="12.0" mnemonicParsing="false" onMouseReleased="#addDataToTable" styleClass="RegisterButton" text="Refresh" />
+                  <Text fill="WHITE" layoutX="140.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update table :">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
