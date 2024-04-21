@@ -41,11 +41,11 @@ public class GameController implements Initializable {
     Draggable draggable;
 
     List<Integer> shipWidths = Arrays.asList(200, 160, 160, 120, 120, 120, 80, 80, 80);
-    List<Ships> ships = new ArrayList<>();
+    static List<Ships> ships = new ArrayList<>();
 
     // Create a map to store each ship and its grid coordinates
     private static Map<Ships, List<String>> shipLocations = new HashMap<>();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         mainVBox.prefWidthProperty().bind(anchorPane.widthProperty());
@@ -53,57 +53,94 @@ public class GameController implements Initializable {
         grid = new Grid(anchorPane);
         grid.centerGridPane();
 
-        for (Integer width : shipWidths) {
-            Ships ship = new Ships(0, 0, width, 40, 40, grid, shipLocations);
-            ships.add(ship);
-            grid.addShip(ship);
-            anchorPane.getChildren().add(ship);
-            
-            ship.setOnKeyPressed(event -> {
-                ship.rotateShip(event);
+        if (shipLocations.size() > 0)
+        {
+            drawShipsFromMap();
+        }
+        else
+        {
+            for (Integer width : shipWidths) {
+                Ships ship = new Ships(0, 0, width, 40, 40, grid, shipLocations);
+                ships.add(ship);
+                grid.addShip(ship);
+                anchorPane.getChildren().add(ship);
                 
-                // Update the shipLocations map
-                List<String> gridCoordinates = ship.getGridCoordinates();
-                shipLocations.put(ship, gridCoordinates);
-
-                System.out.println("New");
-                //pritnts all ships in shipLocations
-                for (Map.Entry<Ships, List<String>> entry : shipLocations.entrySet()) {
-                    Ships key = entry.getKey();
-                    List<String> value = entry.getValue();
-                    System.out.println(key + " " + value);
-                }
-            });
-            
-
-
-            ship.setOnMouseReleased(event -> {
-                ship.snapToGrid(ship);
-
-                if (ship.isWithinGrid()) {
+                ship.setOnKeyPressed(event -> {
+                    ship.rotateShip(event);
+                    
+                    // Update the shipLocations map
                     List<String> gridCoordinates = ship.getGridCoordinates();
                     shipLocations.put(ship, gridCoordinates);
 
-                    //pritnts all ships in shipLocations
                     System.out.println("New");
+                    //pritnts all ships in shipLocations
                     for (Map.Entry<Ships, List<String>> entry : shipLocations.entrySet()) {
                         Ships key = entry.getKey();
                         List<String> value = entry.getValue();
                         System.out.println(key + " " + value);
                     }
                 }
+                );
+                System.out.println(shipLocations);
+                
 
-                if (shipLocations.size() == 9) {
-                    startGame.setDisable(false);
-                    startGame.getStyleClass().add("RegisterButton");
-                }
+
+                ship.setOnMouseReleased(event -> {
+                    ship.snapToGrid(ship);
+
+                    if (ship.isWithinGrid()) {
+                        List<String> gridCoordinates = ship.getGridCoordinates();
+                        shipLocations.put(ship, gridCoordinates);
+
+                        //pritnts all ships in shipLocations
+                        System.out.println("New");
+                        for (Map.Entry<Ships, List<String>> entry : shipLocations.entrySet()) {
+                            Ships key = entry.getKey();
+                            List<String> value = entry.getValue();
+                            System.out.println(key + " " + value);
+                        }
+                    }
+
+                    if (shipLocations.size() == 9) {
+                        startGame.setDisable(false);
+                        startGame.getStyleClass().add("RegisterButton");
+                    }
+                });
+            }
+
+            startGame.setOnAction(event ->{
+                System.out.println("Game Started");
             });
         }
+}
+public void drawShipsFromMap() {
 
-        startGame.setOnAction(event ->{
-            System.out.println("Game Started");
-        });
+    // Iterate over the shipLocations map entries
+    for (Map.Entry<Ships, List<String>> entry : shipLocations.entrySet()) {
+        Ships ship = entry.getKey();
+        List<String> gridCoordinates = entry.getValue();
+
+        // Iterate over the grid coordinates of the ship
+        for (String coordinate : gridCoordinates) {
+            // Convert grid coordinate to pixel position
+            int[] xy = ship.convertCoordinate(coordinate);
+            int x = xy[0] * 40;
+            int y = xy[1] * 40;
+
+            System.out.println(x + " | " + y);
+            // Set ship's position
+            ship.setLayoutX(x );//- (anchorPane.getWidth()-360)/2);
+            ship.setLayoutY(y );//- (anchorPane.getHeight()-360)/2);
+
+            // Add the ship to the anchor pane if it's not already a child
+            if (!anchorPane.getChildren().contains(ship)) {
+                anchorPane.getChildren().add(ship);
+            }
+        }
     }
+}
+    
+    
 
     @FXML
     private void panevisable() throws IOException {

@@ -184,7 +184,7 @@ public class Ships extends Pane {
     }
     
     
-    public int[] convertCoordinate(String coordinate) {
+    public  int[] convertCoordinate(String coordinate) {
         int x = coordinate.charAt(0) - 'A';
         int y = Integer.parseInt(coordinate.substring(1)) - 1;
         return new int[]{x, y};
