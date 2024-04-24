@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -19,6 +20,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GameController implements Initializable {
+    Image image;
+    
     @FXML
     private StackPane pane;
     @FXML
@@ -64,7 +67,11 @@ public class GameController implements Initializable {
         {
             shipLocations.clear();
             for (Integer width : shipWidths) {
-                Ships ship = new Ships(0, 0, width, 40, 40, grid, shipLocations);
+                if (width / 40 == 2) {image = new Image("file:src\\main\\resources\\org\\openjfx\\Images\\ship2long.png");}
+                else if (width / 40 == 3) {image = new Image("file:src\\main\\resources\\org\\openjfx\\Images\\ship3long.png");}
+                else if (width / 40 == 4) {image = new Image("file:src\\main\\resources\\org\\openjfx\\Images\\ship4long.png");}
+                else if (width / 40 == 5) {image = new Image("file:src\\main\\resources\\org\\openjfx\\Images\\ship5long.png");}
+                Ships ship = new Ships(0, 0, width, 40, 40, grid, shipLocations, image);
                 ships.add(ship);
                 grid.addShip(ship);
                 anchorPane.getChildren().add(ship);

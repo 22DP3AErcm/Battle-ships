@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 
@@ -21,12 +23,15 @@ public class Ships extends Pane {
     private boolean isRotated = false;
     private int rotation = 0;
     private Map<Ships, List<String>> shipLocations;
+    private Image image;
 
-    public Ships(int x, int y, int width, int height, double cellSize, Grid grid, Map<Ships, List<String>> shipLocations) {
+    public Ships(int x, int y, int width, int height, double cellSize, Grid grid, Map<Ships, List<String>> shipLocations, Image image) {
         this.cellSize = cellSize;
         this.grid = grid;
         this.rectangle = new Rectangle(width, height, Color.BLUE);
         this.shipLocations = shipLocations;
+        this.image = image;
+        this.rectangle.setFill(new ImagePattern(image));
         setTranslateX(x);
         setTranslateY(y);
 
@@ -67,6 +72,10 @@ public class Ships extends Pane {
 
     public int getRotation() {
         return rotation;
+    }
+
+    public Image getImage(){
+        return image;
     }
 
     public void setRotation(int rotation) {
@@ -218,6 +227,7 @@ public class Ships extends Pane {
             Rectangle rectangle = this.getRectangle();
             // Save the current rotation and position
             int oldRotation = this.getRotation();
+            Image image = this.getImage();
     
             // Save the current width and height
             double oldWidth = rectangle.getWidth();

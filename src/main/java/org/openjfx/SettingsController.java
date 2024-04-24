@@ -16,7 +16,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class SettingsController {
-    public static int[] currentResolution = {0, 0};
+    public static int[] currentResolution = {800, 600};
     @FXML
     private Text resolution;
 
@@ -197,12 +197,10 @@ public class SettingsController {
     }
 
     @FXML
-    private void initialize() {
+    private void initialize() throws IOException {
         singleton = Singleton.getInstance();
         fullscreenCheckbox.setSelected(singleton.getCheckboxState());
         Fullscreen = Singleton.getInstance().getFullscreenState();
-        currentResolution[0] = 800;
-        currentResolution[1] = 600;
     }
 
     @FXML
