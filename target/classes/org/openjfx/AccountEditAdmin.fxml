@@ -25,10 +25,10 @@
             </AnchorPane>
             <TableView fx:id="table" prefHeight="250.0" prefWidth="442.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="username" prefWidth="189.0" text="Username" />
-                <TableColumn fx:id="email" prefWidth="176.0" text="Email" />
-                  <TableColumn fx:id="password" prefWidth="146.0" text="Password" />
-                  <TableColumn fx:id="remove" minWidth="4.0" prefWidth="88.0" />
+                <TableColumn fx:id="username" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="-1.0" text="Username" />
+                <TableColumn fx:id="email" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="-1.0" text="Email" />
+                  <TableColumn fx:id="password" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="-1.0" text="Password" />
+                  <TableColumn fx:id="remove" minWidth="70.0" prefWidth="88.0" />
               </columns>
                <VBox.margin>
                   <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />

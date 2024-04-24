@@ -37,10 +37,11 @@ public class AccountEditAdminController {
     {
         vbox.prefWidthProperty().bind(anchorpane.widthProperty());
         addDataToTable();
-        username.setPrefWidth((anchorpane.getWidth()-70)/3);
-        email.setPrefWidth((anchorpane.getWidth()-70)/3);
-        password.setPrefWidth((anchorpane.getWidth()-70)/3);
-        remove.setPrefWidth(30);
+        username.setPrefWidth((table.getWidth()+70)/3);
+        email.setPrefWidth((table.getWidth()+70)/3);
+        password.setPrefWidth((table.getWidth()+70)/3);
+        remove.setPrefWidth(60);
+        
         
     }
 
@@ -51,10 +52,10 @@ public class AccountEditAdminController {
 
     @FXML
     private void addDataToTable() throws IOException {
-        username.setPrefWidth((anchorpane.getWidth()-70)/3);
-        email.setPrefWidth((anchorpane.getWidth()-70)/3);
-        password.setPrefWidth((anchorpane.getWidth()-70)/3);
-        remove.setPrefWidth(30);
+        username.setPrefWidth((table.getWidth()-90)/3);
+        email.setPrefWidth((table.getWidth()-90)/3);
+        password.setPrefWidth((table.getWidth()-90)/3);
+        remove.setPrefWidth(60);
         
         List<String> allAccounts = CsvManeger.getAllAccountList();
         ObservableList<DataItem> data = FXCollections.observableArrayList();

@@ -133,7 +133,7 @@ public class SettingsController {
 
         ResolutionService.resolutionProperty().set(1366);
         currentResolution[0] = 1366;
-        currentResolution[1] = 780;
+        currentResolution[1] = 768;
     }
 
     @FXML
@@ -225,8 +225,10 @@ public class SettingsController {
 
             fullscreenCheckbox.setSelected(true);
             singleton.setCheckboxState(true);
-            currentResolution[0] = (int)stage.getWidth();
-            currentResolution[1] = (int)stage.getHeight();
+            currentResolution[0] = (int)stage.getWidth() +19;
+            currentResolution[1] = (int)stage.getHeight() +30;
+            System.out.println(currentResolution[0]);
+            System.out.println(currentResolution[1]);
         } else {
             stage.setFullScreen(false);
             Fullscreen = 0;
