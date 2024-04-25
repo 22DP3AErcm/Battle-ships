@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GameController implements Initializable {
-    Image image;
+    String imageURL;
     
     @FXML
     private StackPane pane;
@@ -67,11 +67,11 @@ public class GameController implements Initializable {
         {
             shipLocations.clear();
             for (Integer width : shipWidths) {
-                if (width / 40 == 2) {image = new Image("file:src\\main\\resources\\org\\openjfx\\Images\\ship2long.png");}
-                else if (width / 40 == 3) {image = new Image("file:src\\main\\resources\\org\\openjfx\\Images\\ship3long.png");}
-                else if (width / 40 == 4) {image = new Image("file:src\\main\\resources\\org\\openjfx\\Images\\ship4long.png");}
-                else if (width / 40 == 5) {image = new Image("file:src\\main\\resources\\org\\openjfx\\Images\\ship5long.png");}
-                Ships ship = new Ships(0, 0, width, 40, 40, grid, shipLocations, image);
+                if (width / 40 == 2) {imageURL = "file:src\\main\\resources\\org\\openjfx\\Images\\ship2long";}
+                else if (width / 40 == 3) {imageURL = "file:src\\main\\resources\\org\\openjfx\\Images\\ship3long";}
+                else if (width / 40 == 4) {imageURL = "file:src\\main\\resources\\org\\openjfx\\Images\\ship4long";}
+                else if (width / 40 == 5) {imageURL = "file:src\\main\\resources\\org\\openjfx\\Images\\ship5long";}
+                Ships ship = new Ships(0, 0, width, 40, 40, grid, shipLocations, imageURL);
                 ships.add(ship);
                 grid.addShip(ship);
                 anchorPane.getChildren().add(ship);

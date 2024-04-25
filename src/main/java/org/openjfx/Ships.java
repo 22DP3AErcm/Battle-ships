@@ -23,15 +23,15 @@ public class Ships extends Pane {
     private boolean isRotated = false;
     private int rotation = 0;
     private Map<Ships, List<String>> shipLocations;
-    private Image image;
+    private String imageURL;
 
-    public Ships(int x, int y, int width, int height, double cellSize, Grid grid, Map<Ships, List<String>> shipLocations, Image image) {
+    public Ships(int x, int y, int width, int height, double cellSize, Grid grid, Map<Ships, List<String>> shipLocations, String imageURL) {
         this.cellSize = cellSize;
         this.grid = grid;
         this.rectangle = new Rectangle(width, height, Color.BLUE);
         this.shipLocations = shipLocations;
-        this.image = image;
-        this.rectangle.setFill(new ImagePattern(image));
+        this.imageURL = imageURL;
+        this.rectangle.setFill(new ImagePattern(new Image(imageURL + ".png")));
         setTranslateX(x);
         setTranslateY(y);
 
@@ -74,8 +74,8 @@ public class Ships extends Pane {
         return rotation;
     }
 
-    public Image getImage(){
-        return image;
+    public String getImageURL(){
+        return imageURL;
     }
 
     public void setRotation(int rotation) {
@@ -227,7 +227,6 @@ public class Ships extends Pane {
             Rectangle rectangle = this.getRectangle();
             // Save the current rotation and position
             int oldRotation = this.getRotation();
-            Image image = this.getImage();
     
             // Save the current width and height
             double oldWidth = rectangle.getWidth();
@@ -240,9 +239,11 @@ public class Ships extends Pane {
             if (oldRotation == 0) {
                 this.setIsRotated(true);
                 this.setRotation(1);
+                rectangle.setFill(new ImagePattern(new Image(this.getImageURL() + "Rotated.png")));
             } else {
                 this.setIsRotated(false);
                 this.setRotation(0);
+                rectangle.setFill(new ImagePattern(new Image(this.getImageURL() + ".png")));
             }
     
             // Calculate the ship's grid coordinates after rotation
@@ -251,20 +252,24 @@ public class Ships extends Pane {
             /// Check if the new position is valid
             if (!this.onShip() && this.isWithinGrid() && !this.areShipsAdjacent()) {
                 // If the new position is valid, snap the ship to the grid and update the ship's grid coordinates
-                this.snapToGrid(this);
                 shipLocations.put(this, newGridCoordinates);
             } else {
                 // If the new position is not valid, revert the rotation and position
                 rectangle.setWidth(oldWidth);
                 rectangle.setHeight(oldHeight);
-    
+                
+                
                 if (oldRotation == 0) {
                     this.setIsRotated(false);
                     this.setRotation(0);
+                    rectangle.setFill(new ImagePattern(new Image(this.getImageURL() + ".png")));
+
                 } else {
                     this.setIsRotated(true);
                     this.setRotation(1);
+                    rectangle.setFill(new ImagePattern(new Image(this.getImageURL() + "Rotated.png")));
                 }
+                
             }
         }
     }
