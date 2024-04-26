@@ -52,6 +52,8 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Enemy enemy = new Enemy();
+        //enemy.generateEnemyShips();
         mainVBox.prefWidthProperty().bind(anchorPane.widthProperty());
         startGame.setDisable(true);
         grid = new Grid(anchorPane);

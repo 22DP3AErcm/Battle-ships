@@ -28,7 +28,8 @@ public class Grid {
         for (int i = 0; i < 350 ; i+= 40){
             for (int j = 0; j < 350; j+= 40){
                 Rectangle r = new Rectangle(i, j, 40, 40);
-                r.getStyleClass().add("FieldDefault");
+                r.setFill(Color.LIGHTBLUE);
+                r.setStroke(Color.BLACK);
                 
                 gridPane.getChildren().add(r);
             }
