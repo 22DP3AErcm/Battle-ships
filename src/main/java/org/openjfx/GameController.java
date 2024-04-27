@@ -12,12 +12,10 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class GameController implements Initializable {
     String imageURL;
@@ -52,8 +50,6 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Enemy enemy = new Enemy();
-        //enemy.generateEnemyShips();
         mainVBox.prefWidthProperty().bind(anchorPane.widthProperty());
         startGame.setDisable(true);
         grid = new Grid(anchorPane);
@@ -64,6 +60,9 @@ public class GameController implements Initializable {
             drawShipsFromMap(shipLocations);
             startGame.setDisable(false);
             startGame.getStyleClass().add("RegisterButton");
+            startGame.setOnAction(event ->{
+                System.out.println("Game Started");
+            });
         }
         else
         {
@@ -119,6 +118,8 @@ public class GameController implements Initializable {
                     }
                 });
             }
+            Enemy enemy = new Enemy();
+            enemy.generateEnemyShips();
 
             startGame.setOnAction(event ->{
                 System.out.println("Game Started");

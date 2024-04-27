@@ -16,152 +16,168 @@ public class Enemy {
     
     // Generate random coordinates for the enemy ships
     public void generateEnemyShips() {
-        for (int i = 0; i < 9; i++) {
-            while (shipIsInvalid == false){
-                int x = random.nextInt(9);
-                int y = random.nextInt(9);
+        while (!shipIsInvalid == true) {
+            enemyShips.clear();
+            atemp = 0;
+
+            // Generate random coordinates for each ship
+            for (int i = 0; i < 9;) {
+                int x = random.nextInt(9) + 1;
+                int y = random.nextInt(9) + 1;
                 int orientation = random.nextInt(2);
                 atemp++;
-                System.out.println(atemp);
-                for (i = 0; i < shipWidths.size(); i++){
-                    x = random.nextInt(9);
-                    y = random.nextInt(9);
-                    orientation = random.nextInt(2);
-                    atemp++;
-                    System.out.println(atemp+1);
-                    System.out.println("size " + enemyShips.size());
-                    if (atemp == 100){
-                        enemyShips.clear();
-                        System.out.println("Cleared");
-                        atemp = 0;
-                    }
-                    if (orientation == 0) {
-                        if (shipWidths.get(i) == 80){
-                            String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x+1) + String.valueOf(y);
-                            int[] cordinates = cordinate(stringCordinates.split(","));
-                            if (!onShip(enemyShips) && validShipPlacement(cordinates) && !areShipsAdjacent(enemyShips)){
-                                String ship = String.valueOf(random.nextInt(100000)) + "i";
-                                enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
-                            }
-                        }
-                        else if (shipWidths.get(i) == 160){
-                            String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x+1) + String.valueOf(y) + "," + String.valueOf(x+2) + String.valueOf(y);
-                            int[] cordinates = cordinate(stringCordinates.split(","));
-                            if (!onShip(enemyShips) && validShipPlacement(cordinates) && !areShipsAdjacent(enemyShips)){
-                                String ship = String.valueOf(random.nextInt(100000)) + "i";
-                                enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
-                            }
-                        }
-                        else if (shipWidths.get(i) == 120){
-                            String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x+1) + String.valueOf(y) + "," + String.valueOf(x+2) + String.valueOf(y);
-                            int[] cordinates = cordinate(stringCordinates.split(","));
-                            if (!onShip(enemyShips) && validShipPlacement(cordinates) && !areShipsAdjacent(enemyShips)){
-                                String ship = String.valueOf(random.nextInt(100000)) + "i";
-                                enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
-                            }
-                        }
-                        else if(shipWidths.get(i) == 200){
-                            String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x+1) + String.valueOf(y) + "," + String.valueOf(x+2) + String.valueOf(y) + "," + String.valueOf(x+3) + String.valueOf(y);
-                            int[] cordinates = cordinate(stringCordinates.split(","));
-                            if (!onShip(enemyShips) && validShipPlacement(cordinates) && !areShipsAdjacent(enemyShips)){
-                                String ship = String.valueOf(random.nextInt(100000)) + "i";
-                                enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
-                            }
-                        }
-                    } else {
-                        if (shipWidths.get(i) == 80){
-                            String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x) + String.valueOf(y+1);
-                            int[] cordinates = cordinate(stringCordinates.split(","));
-                            if (!onShip(enemyShips) && validShipPlacement(cordinates) && !areShipsAdjacent(enemyShips)){
-                                String ship = String.valueOf(random.nextInt(100000)) + "i";
-                                enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
-                            }
-                        }
-                        else if (shipWidths.get(i) == 160){
-                            String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x) + String.valueOf(y+1) + "," + String.valueOf(x) + String.valueOf(y+2);
-                            int[] cordinates = cordinate(stringCordinates.split(","));
-                            if (!onShip(enemyShips) && validShipPlacement(cordinates) && !areShipsAdjacent(enemyShips)){
-                                String ship = String.valueOf(random.nextInt(100000)) + "i";
-                                enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
-                            }
-                        }
-                        else if (shipWidths.get(i) == 120){
-                            String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x) + String.valueOf(y+1) + "," + String.valueOf(x) + String.valueOf(y+2);
-                            int[] cordinates = cordinate(stringCordinates.split(","));
-                            if (!onShip(enemyShips) && validShipPlacement(cordinates) && !areShipsAdjacent(enemyShips)){
-                                String ship = String.valueOf(random.nextInt(100000)) + "i";
-                                enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
-                            }
-                        }
-                        else if(shipWidths.get(i) == 200){
-                            String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x) + String.valueOf(y+1) + "," + String.valueOf(x) + String.valueOf(y+2) + "," + String.valueOf(x) + String.valueOf(y+3);
-                            int[] cordinates = cordinate(stringCordinates.split(","));
-                            if (!onShip(enemyShips) && validShipPlacement(cordinates) && !areShipsAdjacent(enemyShips)){
-                                String ship = String.valueOf(random.nextInt(100000)) + "i";
-                                enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
-                            }
-                        }
-                    }
-                }
-                
-                if (enemyShips.size() == 9){
-                    shipIsInvalid = true;
+
+                if (atemp >= 500){
+                    enemyShips.clear();
+                    atemp = 0;
+                    i = 0; 
+                    // prints all ships in map
                     for (Map.Entry<String, List<String>> entry : enemyShips.entrySet()) {
                         String ship = entry.getKey();
                         List<String> coordinates = entry.getValue();
-                        System.out.println(ship + ": " + coordinates);
+                        System.out.println(ship + " " + coordinates);
                     }
                 }
+                
+
+                if (orientation == 0) {
+                    if (shipWidths.get(i) == 80){
+                        String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x+1) + String.valueOf(y);
+                        int[] cordinates = cordinate(stringCordinates.split(","));
+                        if (!onShip(cordinates) && validShipPlacement(cordinates) && !areShipsAdjacent(cordinates)){
+                            String ship = String.valueOf(random.nextInt(100000)) + "i";
+                            enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
+                            i++;
+                        }
+                    }
+                    else if (shipWidths.get(i) == 160){
+                        String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x+1) + String.valueOf(y) + "," + String.valueOf(x+2) + String.valueOf(y) + "," + String.valueOf(x+3) + String.valueOf(y);
+                        int[] cordinates = cordinate(stringCordinates.split(","));
+                        if (!onShip(cordinates) && validShipPlacement(cordinates) && !areShipsAdjacent(cordinates)){
+                            String ship = String.valueOf(random.nextInt(100000)) + "i";
+                            enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
+                            i++;
+                        }
+                    }
+                    else if (shipWidths.get(i) == 120){
+                        String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x+1) + String.valueOf(y) + "," + String.valueOf(x+2) + String.valueOf(y);
+                        int[] cordinates = cordinate(stringCordinates.split(","));
+                        if (!onShip(cordinates) && validShipPlacement(cordinates) && !areShipsAdjacent(cordinates)){
+                            String ship = String.valueOf(random.nextInt(100000)) + "i";
+                            enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
+                            i++;
+                        }
+                    }
+                    else if(shipWidths.get(i) == 200){
+                        String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x+1) + String.valueOf(y) + "," + String.valueOf(x+2) + String.valueOf(y) + "," + String.valueOf(x+3) + String.valueOf(y) + "," + String.valueOf(x+4) + String.valueOf(y);
+                        int[] cordinates = cordinate(stringCordinates.split(","));
+                        if (!onShip(cordinates) && validShipPlacement(cordinates) && !areShipsAdjacent(cordinates)){
+                            String ship = String.valueOf(random.nextInt(100000)) + "i";
+                            enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
+                            i++;
+                        }
+                    }
+                } else {
+                    if (shipWidths.get(i) == 80){
+                        String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x) + String.valueOf(y+1);
+                        int[] cordinates = cordinate(stringCordinates.split(","));
+                        if (!onShip(cordinates) && validShipPlacement(cordinates) && !areShipsAdjacent(cordinates)){
+                            String ship = String.valueOf(random.nextInt(100000)) + "i";
+                            enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
+                            i++;
+                        }
+                    }
+                    else if (shipWidths.get(i) == 160){
+                        String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x) + String.valueOf(y+1) + "," + String.valueOf(x) + String.valueOf(y+2) + "," + String.valueOf(x) + String.valueOf(y+3);
+                        int[] cordinates = cordinate(stringCordinates.split(","));
+                        if (!onShip(cordinates) && validShipPlacement(cordinates) && !areShipsAdjacent(cordinates)){
+                            String ship = String.valueOf(random.nextInt(100000)) + "i";
+                            enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
+                            i++;
+                        }
+                    }
+                    else if (shipWidths.get(i) == 120){
+                        String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x) + String.valueOf(y+1) + "," + String.valueOf(x) + String.valueOf(y+2);
+                        int[] cordinates = cordinate(stringCordinates.split(","));
+                        if (!onShip(cordinates) && validShipPlacement(cordinates) && !areShipsAdjacent(cordinates)){
+                            String ship = String.valueOf(random.nextInt(100000)) + "i";
+                            enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
+                            i++;
+                        }
+                    }
+                    else if(shipWidths.get(i) == 200){
+                        String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x) + String.valueOf(y+1) + "," + String.valueOf(x) + String.valueOf(y+2) + "," + String.valueOf(x) + String.valueOf(y+3) + "," + String.valueOf(x) + String.valueOf(y+4);
+                        int[] cordinates = cordinate(stringCordinates.split(","));
+                        if (!onShip(cordinates) && validShipPlacement(cordinates) && !areShipsAdjacent(cordinates)){
+                            String ship = String.valueOf(random.nextInt(100000)) + "i";
+                            enemyShips.put(ship, Arrays.asList(convertCoordinate(cordinates)));
+                            i++;
+                        }
+                    }
+                }
+                if (enemyShips.size() == 9) {
+                    shipIsInvalid = true;
+                    System.out.println("Ships generated");
+                    // prints all ships in map
+                    for (Map.Entry<String, List<String>> entry : enemyShips.entrySet()) {
+                        String ship = entry.getKey();
+                        List<String> coordinates = entry.getValue();
+                        System.out.println(ship + " " + coordinates);
+                    }
+                    break;
+                }
             }
-        }
+        }       
     }
 
     public boolean validShipPlacement(int[] coordinates) {
         for (int i = 0; i < coordinates.length; i++) {
-            if (coordinates[i] < 0 || coordinates[i] > 9) {
+            int row = coordinates[i] / 10;
+            int col = coordinates[i] % 10;
+            if (row < 0 || row > 8 || col < 0 || col > 8) {
                 return false;
             }
         }
-
+    
         return true;
     }
 
-    public boolean areShipsAdjacent(Map<String, List<String>> objectLocations) {
-        // Check if ships are adjacent using map of ships and their coordinates
-        for (Map.Entry<String, List<String>> entry : objectLocations.entrySet()) {
-            String ship = entry.getKey();
-            List<String> coordinates = entry.getValue();
+    public boolean onShip(int[] currentShipCoordinates) {
+        String[] coordinateStr = convertCoordinate(currentShipCoordinates);
     
-            for (int i = 0; i < coordinates.size(); i++) {
-                String[] splitCoordinates = coordinates.get(i).split(",");
-                int x = Integer.parseInt(splitCoordinates[0]);
-                int y = Integer.parseInt(splitCoordinates[1]);
-    
-                if (objectLocations.containsValue(x + 1 + "," + y) || objectLocations.containsValue(x - 1 + "," + y) || objectLocations.containsValue(x + "," + (y + 1)) || objectLocations.containsValue(x + "," + (y - 1))) {
-                    return true;
+        // Iterate over all the enemy ships
+        for (List<String> enemyShipCoordinates : enemyShips.values()) {
+            // Check if the given coordinates are on the enemy ship
+            for (String enemyCoordinate : enemyShipCoordinates) {
+                for (String coordinate : coordinateStr) {
+                    if (coordinate.equals(enemyCoordinate)) {
+                        return true;
+                    }
                 }
             }
         }
     
+        // The given coordinates are not on any enemy ship
         return false;
     }
+    
+    public boolean areShipsAdjacent(int[] currentShipCoordinates) {
+        String[] coordinateStr = convertCoordinate(currentShipCoordinates);
 
-    public boolean onShip(Map<String, List<String>> objectLocations) {
-        for (Map.Entry<String, List<String>> entry : objectLocations.entrySet()) {
-            String ship = entry.getKey();
-            List<String> coordinates = entry.getValue();
-
-            for (int i = 0; i < coordinates.size(); i++) {
-                String[] splitCoordinates = coordinates.get(i).split(",");
-                int x = Integer.parseInt(splitCoordinates[0]);
-                int y = Integer.parseInt(splitCoordinates[1]);
-
-                if (objectLocations.containsValue(x + "," + y)) {
-                    return true;
+        // Iterate over all the enemy ships
+        for (List<String> enemyShipCoordinates : enemyShips.values()) {
+            // Check if the given coordinates are adjacent to the enemy ship
+            for (String enemyCoordinate : enemyShipCoordinates) {
+                for (String coordinate : coordinateStr) {
+                    int[] enemyCordinates = convertCoordinate(enemyCoordinate);
+                    int[] cordinates = convertCoordinate(coordinate);
+                    if (Math.abs(enemyCordinates[0] - cordinates[0]) <= 1 && Math.abs(enemyCordinates[1] - cordinates[1]) <= 1) {
+                        return true;
+                    }
                 }
             }
         }
-
+        // The given coordinates are not adjacent to any enemy ship
         return false;
     }
     
@@ -169,11 +185,19 @@ public class Enemy {
         String[] convertedCoordinates = new String[coordinates.length];
         
         for (int i = 0; i < coordinates.length; i++) {
-            char letter = (char) (coordinates[i] + 64);
-            convertedCoordinates[i] = letter + Integer.toString(i + 1);
+            int firstDigit = coordinates[i] / 10;
+            int secondDigit = coordinates[i] % 10;
+            char letter = (char) (firstDigit + 64);
+            convertedCoordinates[i] = letter + Integer.toString(secondDigit);
         }
         
         return convertedCoordinates;
+    }
+
+    public  int[] convertCoordinate(String coordinate) {
+        int x = coordinate.charAt(0) - 'A';
+        int y = Integer.parseInt(coordinate.substring(1)) - 1;
+        return new int[]{x, y};
     }
 
     public int[] cordinate(String[] coordinate) {
