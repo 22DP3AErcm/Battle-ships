@@ -1,0 +1,39 @@
+/* https://stackoverflow.com/questions/33938811/styling-a-tableview-in-css-javafx  - style sheet */
+.table-view {
+    -fx-background-color: #292929; 
+}
+
+.table-row-cell {
+    -fx-background-color: #8b8b8b;
+    -fx-border-width: 2;
+    /* -fx-padding:5 0; */
+}
+
+.table-row-cell:odd{
+    -fx-background-color: #5e5e5e;
+    -fx-border-width: 2;
+    /* -fx-padding:5 0; */
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #333333;
+}
+
+.table-view .column-header {
+    -fx-background-color: #333333;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+
+}
+
+.remove-btn{
+    -fx-text-fill: white;
+    -fx-background-color:#630d0d;
+}
+
+.remove-btn:hover{
+    -fx-background-color:#801212;
+}

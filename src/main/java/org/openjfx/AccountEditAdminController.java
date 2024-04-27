@@ -9,6 +9,7 @@ import javafx.beans.value.ObservableValueBase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -36,13 +37,12 @@ public class AccountEditAdminController {
     private void initialize() throws IOException
     {
         vbox.prefWidthProperty().bind(anchorpane.widthProperty());
+        vbox.prefHeightProperty().bind(anchorpane.heightProperty());
         addDataToTable();
-        username.setPrefWidth((table.getWidth()+70)/3);
-        email.setPrefWidth((table.getWidth()+70)/3);
-        password.setPrefWidth((table.getWidth()+70)/3);
-        remove.setPrefWidth(60);
-        
-        
+        username.setPrefWidth((SettingsController.currentResolution[0]-145)/3);
+        email.setPrefWidth((SettingsController.currentResolution[0]-145)/3);
+        password.setPrefWidth((SettingsController.currentResolution[0]-145)/3);
+        remove.setPrefWidth(85);
     }
 
     @FXML
@@ -55,7 +55,7 @@ public class AccountEditAdminController {
         username.setPrefWidth((table.getWidth()-90)/3);
         email.setPrefWidth((table.getWidth()-90)/3);
         password.setPrefWidth((table.getWidth()-90)/3);
-        remove.setPrefWidth(60);
+        remove.setPrefWidth(85);
         
         List<String> allAccounts = CsvManeger.getAllAccountList();
         ObservableList<DataItem> data = FXCollections.observableArrayList();
@@ -65,6 +65,7 @@ public class AccountEditAdminController {
             removeButton.setId(""+index);
             removeButton.setOnMouseReleased(event -> {try {
                 CsvManeger.RemoveAccount(allAccounts.get(index));
+                addDataToTable();
             } catch (IOException e) {
                 return;
             }});
@@ -96,6 +97,8 @@ public class AccountEditAdminController {
 
         remove.setCellValueFactory(cellData -> {
             Button button = cellData.getValue().buttonProperty().get();
+            button.getStyleClass().add("remove-btn");
+            button.setCursor(Cursor.HAND);
             return button != null ?
                     new SimpleObjectProperty<>(button) :
                     null;
@@ -115,7 +118,7 @@ class DataItem {
         this.email = new SimpleObjectProperty<>(data[1]);
         this.password = new SimpleObjectProperty<>(data[2]);
         this.button = new SimpleObjectProperty<>(button);
-    }
+        }
 
     public SimpleObjectProperty<String> nameProperty() {
         return name;

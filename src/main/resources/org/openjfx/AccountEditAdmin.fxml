@@ -23,27 +23,17 @@
                   <Button layoutX="539.0" layoutY="7.0" mnemonicParsing="false" onAction="#goToGame" prefWidth="54.0" styleClass="Register" text="Game" textFill="WHITE" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
                </children>
             </AnchorPane>
-            <TableView fx:id="table" prefHeight="250.0" prefWidth="442.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="table" prefHeight="250.0" prefWidth="442.0" stylesheets="@css/table.css" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="username" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="-1.0" text="Username" />
-                <TableColumn fx:id="email" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="-1.0" text="Email" />
+                <TableColumn fx:id="email" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="300.0" text="Email" />
                   <TableColumn fx:id="password" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="-1.0" text="Password" />
-                  <TableColumn fx:id="remove" minWidth="70.0" prefWidth="88.0" />
+                  <TableColumn fx:id="remove" minWidth="61.0" prefWidth="61.0" style="-fx-alignment: center;" />
               </columns>
                <VBox.margin>
                   <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </TableView>
-            <AnchorPane prefHeight="86.0" prefWidth="600.0">
-               <children>
-                  <Button fx:id="refresh" layoutX="312.0" layoutY="12.0" mnemonicParsing="false" onMouseReleased="#addDataToTable" styleClass="RegisterButton" text="Refresh" />
-                  <Text fill="WHITE" layoutX="140.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update table :">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Text>
-               </children>
-            </AnchorPane>
          </children>
       </VBox>
    </children>
