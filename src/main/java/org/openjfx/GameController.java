@@ -31,7 +31,7 @@ public class GameController implements Initializable {
     @FXML
     private Button startGame;
     @FXML
-    private AnchorPane anchorPane;
+    public AnchorPane anchorPane;
 
     private Grid grid;
 
@@ -69,18 +69,19 @@ public class GameController implements Initializable {
             if (gameStarted == 0)
             {
                 startGame.setOnAction(event ->{
-                    grid.addButtonsToGrid();
                     System.out.println("Game Started");
                     startGame.setDisable(true);
                     startGame.setOpacity(0);
                     gameStarted = 1;
                     try {
-                        App.setRoot("CoinToss");
-                        Platform.runLater(() -> {
-                            CoinToss coinToss = new CoinToss();
-                            coinToss.coinToss();
-                        });
-                    } catch (IOException e) {}
+                        App.setRoot("Enemy");
+                        // Platform.runLater(() -> {
+                        //     CoinToss coinToss = new CoinToss();
+                        //     coinToss.coinToss();
+                        // });
+                    } catch (IOException e) {
+                        System.out.println("Error in GameController.java");
+                    }
                     
                 });
             }else{
@@ -149,18 +150,19 @@ public class GameController implements Initializable {
             if (gameStarted == 0)
             {
                 startGame.setOnAction(event ->{
-                    grid.addButtonsToGrid();
                     System.out.println("Game Started");
                     startGame.setDisable(true);
                     startGame.setOpacity(0);
                     gameStarted = 1;
                     try {
-                        App.setRoot("CoinToss");
-                        Platform.runLater(() -> {
-                            CoinToss coinToss = new CoinToss();
-                            coinToss.coinToss();
-                        });
-                    } catch (IOException e) {}
+                        App.setRoot("Enemy");
+                        // Platform.runLater(() -> {
+                        //     CoinToss coinToss = new CoinToss();
+                        //     coinToss.coinToss();
+                        // });
+                    } catch (IOException e) {
+                        System.out.println("Error in GameController.java");
+                    }
                 });
             }
         }

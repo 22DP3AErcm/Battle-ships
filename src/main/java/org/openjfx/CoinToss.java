@@ -16,6 +16,13 @@ public class CoinToss {
 
     public void coinToss() {
         gameController.isPlayerTurn = true;
+
+        if (gameController.isPlayerTurn){
+            try{
+                App.setRoot("game");
+            }catch(Exception e){}
+
+        }
     }
     
 }

@@ -12,14 +12,19 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Grid {
+    GameController gameController = new GameController();
     private List<Ships> ships = new ArrayList<>();
     private AnchorPane anchorPane;
     private Pane gridPane;
+    Bullets bullets;
+    public Grid() {
+    }
 
     public void addShip(Ships ship) {
         ships.add(ship);
         gridPane.getChildren().add(ship);
     }
+
     public List<Ships> getShips() {
         return ships;
     }
@@ -27,6 +32,7 @@ public class Grid {
     public Grid(AnchorPane anchorPane) {
         this.anchorPane = anchorPane;
         this.gridPane = new Pane();
+        this.bullets = new Bullets(anchorPane);
 
         for (int i = 0; i < 350 ; i+= 40){
             for (int j = 0; j < 350; j+= 40){
@@ -93,7 +99,7 @@ public class Grid {
                     button.setPrefSize(cellSize, cellSize);
                     button.setLayoutX(startX + j * cellSize);
                     button.setLayoutY(startY + i * cellSize);
-                    button.setOnAction(event -> System.out.println(buttonName));
+                    button.setOnAction(event -> bullets.checkIfShipIsShot(GameController.shipLocations, buttonName));
                     button.setOpacity(0);
                     anchorPane.getChildren().add(button);
                     button.toFront();
