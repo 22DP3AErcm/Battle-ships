@@ -86,6 +86,16 @@ public class Ships extends Pane {
         return isRotated;
     }
 
+    private List<String> hitCoordinates = new ArrayList<>();
+
+    public void addHitCoordinate(String coordinate) {
+        hitCoordinates.add(coordinate);
+    }
+
+    public List<String> getHitCoordinates() {
+        return hitCoordinates;
+    }
+
     
     public void snapToGrid(Ships ship){
         double gridX = grid.getGridPane().getLayoutX();

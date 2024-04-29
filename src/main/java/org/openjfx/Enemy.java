@@ -8,7 +8,7 @@ import java.util.Random;
 
 
 public class Enemy {
-    private static Map<String, List<String>> enemyShips = new HashMap<>();
+    public static Map<String, List<String>> enemyShips = new HashMap<>();
     List<Integer> shipWidths = Arrays.asList(200, 160, 160, 120, 120, 120, 80, 80, 80);
     Random random = new Random();
     boolean shipIsInvalid = false;

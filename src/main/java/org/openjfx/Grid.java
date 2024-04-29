@@ -3,10 +3,13 @@ package org.openjfx;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Platform;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 public class Grid {
     private List<Ships> ships = new ArrayList<>();
@@ -63,6 +66,40 @@ public class Grid {
     public Pane getGridPane() {
         return gridPane;
     }
+    
 
+    public void addButtonsToGrid() {
+        char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
+        int cellSize = 40;
+        int gridWidth = cellSize * 9;
+        int gridHeight = cellSize * 9;
+
+        // Create a layout pass to ensure that the anchorPane has been laid out before we try to get its width and height
+        Platform.runLater(() -> {
+            Stage stage = (Stage) anchorPane.getScene().getWindow();
+            double decorationWidth = stage.getWidth() - anchorPane.getScene().getWidth();
+            double decorationHeight = stage.getHeight() - anchorPane.getScene().getHeight();
+
+            double paneWidth = anchorPane.getWidth() - decorationWidth - 25;
+            double paneHeight = anchorPane.getHeight() - decorationHeight;
+
+            double startX = (paneWidth - gridWidth) / 2;
+            double startY = (paneHeight - gridHeight) / 2;
+
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    String buttonName = letters[j] + Integer.toString(i + 1);
+                    Button button = new Button(buttonName);
+                    button.setPrefSize(cellSize, cellSize);
+                    button.setLayoutX(startX + j * cellSize);
+                    button.setLayoutY(startY + i * cellSize);
+                    button.setOnAction(event -> System.out.println(buttonName));
+                    button.setOpacity(0);
+                    anchorPane.getChildren().add(button);
+                    button.toFront();
+                }
+            }
+        });
+    }
 
 }

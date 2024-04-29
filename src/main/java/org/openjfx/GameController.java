@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -40,13 +41,17 @@ public class GameController implements Initializable {
     @FXML
     private Pane draggablePane;
 
+    public static int gameStarted = 0;
+
     Draggable draggable;
+
+    public static boolean isPlayerTurn;
 
     List<Integer> shipWidths = Arrays.asList(200, 160, 160, 120, 120, 120, 80, 80, 80);
     static List<Ships> ships = new ArrayList<>();
 
     // Create a map to store each ship and its grid coordinates
-    private static Map<Ships, List<String>> shipLocations = new HashMap<>();
+    public static Map<Ships, List<String>> shipLocations = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,9 +65,29 @@ public class GameController implements Initializable {
             drawShipsFromMap(shipLocations);
             startGame.setDisable(false);
             startGame.getStyleClass().add("RegisterButton");
-            startGame.setOnAction(event ->{
-                System.out.println("Game Started");
-            });
+            
+            if (gameStarted == 0)
+            {
+                startGame.setOnAction(event ->{
+                    grid.addButtonsToGrid();
+                    System.out.println("Game Started");
+                    startGame.setDisable(true);
+                    startGame.setOpacity(0);
+                    gameStarted = 1;
+                    try {
+                        App.setRoot("CoinToss");
+                        Platform.runLater(() -> {
+                            CoinToss coinToss = new CoinToss();
+                            coinToss.coinToss();
+                        });
+                    } catch (IOException e) {}
+                    
+                });
+            }else{
+                grid.addButtonsToGrid();
+                startGame.setDisable(true);
+                startGame.setOpacity(0);
+            }
         }
         else
         {
@@ -120,36 +145,50 @@ public class GameController implements Initializable {
             }
             Enemy enemy = new Enemy();
             enemy.generateEnemyShips();
-
-            startGame.setOnAction(event ->{
-                System.out.println("Game Started");
-            });
-        }
-}
-public void drawShipsFromMap(Map<Ships, List<String>> objectLocations) {
-    // Iterate over the shipLocations map entries
-    for (Map.Entry<Ships, List<String>> entry : objectLocations.entrySet()) {
-        Ships ship = entry.getKey();
-        List<String> gridCoordinates = entry.getValue();
-
-        // Iterate over the grid coordinates of the ship
-        for (String coordinate : gridCoordinates) {
-            // Convert grid coordinate to pixel position
-            int[] xy = ship.convertCoordinate(coordinate);
-            int x = Math.round(xy[0] / 40) * 40 + (SettingsController.currentResolution[0]-360)/2 - 220;
-            int y = Math.round(xy[1] / 40) * 40 + (SettingsController.currentResolution[1]-360)/2 - 120;
-
-            // Set ship's position
-            ship.setLayoutX(x);
-            ship.setLayoutY(y);
-
-            // Add the ship to the anchor pane if it's not already a child
-            if (!anchorPane.getChildren().contains(ship)) {
-                anchorPane.getChildren().add(ship);
+            
+            if (gameStarted == 0)
+            {
+                startGame.setOnAction(event ->{
+                    grid.addButtonsToGrid();
+                    System.out.println("Game Started");
+                    startGame.setDisable(true);
+                    startGame.setOpacity(0);
+                    gameStarted = 1;
+                    try {
+                        App.setRoot("CoinToss");
+                        Platform.runLater(() -> {
+                            CoinToss coinToss = new CoinToss();
+                            coinToss.coinToss();
+                        });
+                    } catch (IOException e) {}
+                });
             }
         }
     }
-}
+    public void drawShipsFromMap(Map<Ships, List<String>> objectLocations) {
+        // Iterate over the shipLocations map entries
+        for (Map.Entry<Ships, List<String>> entry : objectLocations.entrySet()) {
+            Ships ship = entry.getKey();
+            List<String> gridCoordinates = entry.getValue();
+
+            // Iterate over the grid coordinates of the ship
+            for (String coordinate : gridCoordinates) {
+                // Convert grid coordinate to pixel position
+                int[] xy = ship.convertCoordinate(coordinate);
+                int x = Math.round(xy[0] / 40) * 40 + (SettingsController.currentResolution[0]-360)/2 - 220;
+                int y = Math.round(xy[1] / 40) * 40 + (SettingsController.currentResolution[1]-360)/2 - 120;
+
+                // Set ship's position
+                ship.setLayoutX(x);
+                ship.setLayoutY(y);
+
+                // Add the ship to the anchor pane if it's not already a child
+                if (!anchorPane.getChildren().contains(ship)) {
+                    anchorPane.getChildren().add(ship);
+                }
+            }
+        }
+    }
     
     
 
