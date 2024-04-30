@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -153,6 +152,8 @@ public class GameController implements Initializable {
                     System.out.println("Game Started");
                     startGame.setDisable(true);
                     startGame.setOpacity(0);
+                    //grid.addButtonsToGrid();
+                    isPlayerTurn = true;
                     gameStarted = 1;
                     try {
                         App.setRoot("Enemy");
