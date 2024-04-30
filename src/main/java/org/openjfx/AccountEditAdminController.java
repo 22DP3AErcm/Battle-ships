@@ -1,11 +1,9 @@
 package org.openjfx;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValueBase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

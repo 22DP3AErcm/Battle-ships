@@ -117,14 +117,6 @@ public class Enemy {
                 }
                 if (enemyShips.size() == 9) {
                     shipIsInvalid = true;
-                    System.out.println("Ships generated");
-                    // prints all ships in map
-                    for (Map.Entry<String, List<String>> entry : enemyShips.entrySet()) {
-                        String ship = entry.getKey();
-                        List<String> coordinates = entry.getValue();
-                        System.out.println(ship + " " + coordinates);
-                    }
-                    break;
                 }
             }
         }       
