@@ -7,9 +7,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -84,11 +87,13 @@ public class GameController implements Initializable {
                     
                 });
             }else{
-                grid.addButtonsToGrid();
                 Bullets bullets = new Bullets(anchorPane);
                 bullets.addBullet();
                 startGame.setDisable(true);
                 startGame.setOpacity(0);
+                grid.addButtonsToGrid();
+                enemyTurn();
+                
             }
         }
         else
@@ -210,5 +215,22 @@ public class GameController implements Initializable {
             System.out.println(LoginController.account);
             App.setRoot("AccountEdit");
         }
+    }
+
+    Random random = new Random();
+
+    public void enemyTurn() {
+        int x = random.nextInt(9) + 1;
+        int y = random.nextInt(9) + 1;
+        while (Bullets.bulletsShotEnemy.containsKey(String.valueOf((char) (x + 64)) + y)) {
+            x = random.nextInt(9) + 1;
+            y = random.nextInt(9) + 1;
+        }
+        String coordinates = String.valueOf((char) (x + 64)) + y;
+        
+        System.out.println("Enemy shot at: " + coordinates);
+        Bullets bullets = new Bullets(anchorPane);
+        bullets.checkIfShipIsShot(coordinates);
+        
     }
 }

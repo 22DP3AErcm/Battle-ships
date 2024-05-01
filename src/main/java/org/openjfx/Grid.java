@@ -99,7 +99,9 @@ public class Grid {
                     button.setPrefSize(cellSize, cellSize);
                     button.setLayoutX(startX + j * cellSize);
                     button.setLayoutY(startY + i * cellSize);
-                    button.setOnAction(event -> bullets.checkIfShipIsShot(buttonName));
+                    if (gameController.isPlayerTurn) {
+                        button.setOnAction(event -> bullets.checkIfShipIsShot(buttonName));
+                    }
                     button.setOpacity(0);
                     anchorPane.getChildren().add(button);
                     button.toFront();
