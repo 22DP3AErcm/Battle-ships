@@ -71,7 +71,6 @@ public class GameController implements Initializable {
             if (gameStarted == 0)
             {
                 startGame.setOnAction(event ->{
-                    System.out.println("Game Started");
                     startGame.setDisable(true);
                     startGame.setOpacity(0);
                     gameStarted = 1;
@@ -220,9 +219,19 @@ public class GameController implements Initializable {
         }
         String coordinates = String.valueOf((char) (x + 64)) + y;
         
-        System.out.println("Enemy shot at: " + coordinates);
         Bullets bullets = new Bullets(anchorPane);
         bullets.checkIfShipIsShot(coordinates);
         
+
+        // If hit is true enemy shoots again
+        PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.6));
+        pause.setOnFinished(event -> {
+            if (bullets.isHit){
+                
+                enemyTurn();
+            }
+        });
+        pause.play();
+
     }
 }

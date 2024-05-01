@@ -64,8 +64,11 @@ public class Bullets {
         // Store the shot coordinates
         bulletsShot.put(coordinates, false);
         isPauseInProgress = true;
+        if (!gameController.isPlayerTurn) {
+            isHit = false;
+        }
 
-        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        PauseTransition pause = new PauseTransition(Duration.seconds(2));
         pause.setOnFinished(event -> {
             isPauseInProgress = false;
             if (gameController.isPlayerTurn) {

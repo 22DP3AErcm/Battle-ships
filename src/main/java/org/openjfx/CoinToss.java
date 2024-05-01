@@ -1,23 +1,14 @@
 package org.openjfx;
 
-import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
-import javafx.scene.PerspectiveCamera;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -87,7 +78,6 @@ public class CoinToss {
             {
                 rotationTimes = rotationTimes - outcome;
                 rotateTransition.play();
-                System.out.println(outcome);
             }
             else if (rotationTimes > 1 && rotationTimes <= 15)
             {
@@ -110,7 +100,8 @@ public class CoinToss {
                 if (userchoice == outcome)
                 {
                     try
-                    {
+                    {   
+                        gameController.isPlayerTurn = true;
                         App.setRoot("Enemy");
                     }
                     catch(IOException e){}
@@ -119,6 +110,7 @@ public class CoinToss {
                 {
                     try
                     {
+                        gameController.isPlayerTurn = false;
                         App.setRoot("Game");
                     }
                     catch(IOException e){}
