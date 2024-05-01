@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.concurrent.locks.AbstractQueuedLongSynchronizer.ConditionObject;
 
 /**
  * JavaFX App
@@ -19,6 +20,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        // CoinToss.coinToss();
         scene = new Scene(loadFXML("Login"));
         stage.setScene(scene);
 
