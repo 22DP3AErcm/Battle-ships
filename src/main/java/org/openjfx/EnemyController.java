@@ -1,6 +1,5 @@
 package org.openjfx;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
@@ -10,7 +9,9 @@ public class EnemyController {
     private Grid grid;
 
     public void initialize() {
+        Bullets bullets = new Bullets(anchorPane);
         grid = new Grid(anchorPane);
         grid.addButtonsToGrid();
+        bullets.addBullet();
     }
 }
