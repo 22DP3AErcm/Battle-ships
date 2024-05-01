@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -156,11 +157,7 @@ public class GameController implements Initializable {
                     isPlayerTurn = true;
                     gameStarted = 1;
                     try {
-                        App.setRoot("Enemy");
-                        // Platform.runLater(() -> {
-                        //     CoinToss coinToss = new CoinToss();
-                        //     coinToss.coinToss();
-                        // });
+                        App.setRoot("CoinToss");
                     } catch (IOException e) {
                         System.out.println("Error in GameController.java");
                     }

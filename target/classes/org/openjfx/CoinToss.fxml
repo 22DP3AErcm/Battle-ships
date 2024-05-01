@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.CoinToss">
    <children>
-      <Text fx:id="coinTossText" layoutX="173.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="253.13671875">
+      <Text fx:id="coinTossText" layoutX="14.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="253.13671875">
          <font>
             <Font size="64.0" />
          </font>
       </Text>
+      <Button fx:id="headsButton" layoutX="40.0" layoutY="301.0" mnemonicParsing="false" onMouseReleased="#HeadsToss" text="Heads" />
+      <Button fx:id="tailsButton" layoutX="40.0" layoutY="256.0" mnemonicParsing="false" onMouseReleased="#TailsToss" text="Tails" />
+      <StackPane fx:id="root" layoutX="212.0" layoutY="106.0" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="coinImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>
