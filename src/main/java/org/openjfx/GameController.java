@@ -218,6 +218,10 @@ public class GameController implements Initializable {
     int y;
     public void enemyTurn() {
         Bullets bullets = new Bullets(anchorPane);
+        if (bullets.gameOver){
+            return;
+        }
+        
         if (!bullets.isHit){
             x = random.nextInt(9) + 1;
             y = random.nextInt(9) + 1;

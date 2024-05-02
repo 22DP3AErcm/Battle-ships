@@ -69,8 +69,9 @@ public class Bullets {
         if (!gameController.isPlayerTurn) {
             isHit = false;
         }
+        gameOver();
 
-        PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+        PauseTransition pause = new PauseTransition(Duration.seconds(2));
         pause.setOnFinished(event -> {
             isPauseInProgress = false;
             if (gameController.isPlayerTurn && !gameOver) {
@@ -249,18 +250,25 @@ public class Bullets {
 
         if (destroyedShipsPlayer.size() == 9) {
             gameOver = true;
-            try {
-                App.setRoot("Lost");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            PauseTransition pause = new PauseTransition(Duration.seconds(2));
+            pause.setOnFinished(event -> {
+                try {
+                    App.setRoot("Lost");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         } else if (destroyedShipsEnemy.size() == 9) {
             gameOver = true;
-            try {
-                App.setRoot("Won");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            PauseTransition pause = new PauseTransition(Duration.seconds(2));
+            pause.setOnFinished(event -> {
+                try {
+                    App.setRoot("Won");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            pause.play();
         }
     }
 }
