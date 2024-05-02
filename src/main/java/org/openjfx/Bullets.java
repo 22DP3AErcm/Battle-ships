@@ -26,6 +26,8 @@ public class Bullets {
     private Rectangle rectangle;
     String imageURL;
 
+    public static boolean gameOver = false;
+
     public static boolean isHit = false;
     public static boolean isPauseInProgress = false;
 
@@ -68,17 +70,17 @@ public class Bullets {
             isHit = false;
         }
 
-        PauseTransition pause = new PauseTransition(Duration.seconds(2));
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
         pause.setOnFinished(event -> {
             isPauseInProgress = false;
-            if (gameController.isPlayerTurn) {
+            if (gameController.isPlayerTurn && !gameOver) {
                 gameController.isPlayerTurn = false;
                 try {
                     App.setRoot("Game");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else {
+            } else if (!gameController.isPlayerTurn && !gameOver){
                 gameController.isPlayerTurn = true;
                 try {
                     App.setRoot("Enemy");
@@ -130,7 +132,8 @@ public class Bullets {
     }
 
     public Set<List<String>> destroyedShips = new HashSet<>();
-
+    public static List<String> AllShots = new ArrayList<>();
+    public static boolean shipDestroyed = false;
     public void EnemyShips() {
         for (Map.Entry<String, List<String>> entry : Enemy.enemyShips.entrySet()) {
             List<String> shipCoordinates = entry.getValue();
@@ -145,10 +148,34 @@ public class Bullets {
             if (shipCoordinates.size() == hitCoordinates.size() && !destroyedShips.contains(shipCoordinates)) {
                 drawEnemyShip(shipCoordinates);
                 destroyedShips.add(shipCoordinates);
+                shipDestroyed = true;
+
+                // Add all the coordinates around the destroyed ship to AllShots
+                addSurroundingCoordinatesToAllShots(shipCoordinates);
             }
         }
     }
 
+    public void addSurroundingCoordinatesToAllShots(List<String> coordinate) {
+        for (String c : coordinate) {
+            int[] xy = enemy.convertCoordinate(c);
+            int x = xy[0];
+            int y = xy[1];
+
+            // Add cordinates around the given cordinates to AllShots
+            AllShots.add(String.valueOf((char) (x + 64) + (y + 1)));
+            AllShots.add(String.valueOf((char) (x + 64) + (y - 1)));
+            AllShots.add(String.valueOf((char) (x + 65) + y));
+            AllShots.add(String.valueOf((char) (x + 63) + y));
+            AllShots.add(String.valueOf((char) (x + 65) + (y + 1)));
+            AllShots.add(String.valueOf((char) (x + 65) + (y - 1)));
+            AllShots.add(String.valueOf((char) (x + 63) + (y + 1)));
+            AllShots.add(String.valueOf((char) (x + 63) + (y - 1)));
+        }
+
+
+
+    }
 
     public void drawEnemyShip(List<String> shipCoordinates) {
         rectangle = new Rectangle();
@@ -221,9 +248,19 @@ public class Bullets {
         }
 
         if (destroyedShipsPlayer.size() == 9) {
-            System.out.println("Game Over! You lost!");
+            gameOver = true;
+            try {
+                App.setRoot("Lost");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else if (destroyedShipsEnemy.size() == 9) {
-            System.out.println("Game Over! You won!");
+            gameOver = true;
+            try {
+                App.setRoot("Won");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

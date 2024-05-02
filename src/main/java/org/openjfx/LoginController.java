@@ -59,7 +59,7 @@ public class LoginController {
                 stage.setWidth(800);
                 stage.setHeight(600);
                 stage.centerOnScreen();
-                App.setRoot("Game");
+                App.setRoot("MainMenu");
                 
             } else {
                 WrongLogin.setVisible(true);

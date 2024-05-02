@@ -30,9 +30,15 @@ public class SettingsController {
     private int Fullscreen = 0;
     private Singleton singleton;
 
+    GameController gameController = new GameController();
+
     @FXML
     private void goToGame() throws IOException {
-        App.setRoot("Game");
+        if (gameController.cameFrom.equals("MainMenu"))
+            App.setRoot("MainMenu");
+        else if (gameController.cameFrom.equals("Game")){
+            App.setRoot("Game");
+        }
     }
 
     @FXML

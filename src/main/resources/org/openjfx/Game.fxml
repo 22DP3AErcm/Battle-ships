@@ -10,24 +10,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.GameController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="Register" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.GameController">
    <children>
-      <Button fx:id="settingButton" mnemonicParsing="false" onAction="#panevisable" text="Button" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button fx:id="settingButton" mnemonicParsing="false" onAction="#panevisable" styleClass="RegisterButton" text="Menu" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane fx:id="gridPane" layoutY="331.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <StackPane fx:id="pane" accessibleRole="BUTTON" opacity="0.75" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@css/login.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" onMouseReleased="#goToAccountEdit" text="Edit profile" translateY="20.0">
+            <Button mnemonicParsing="false" onMouseReleased="#goToAccountEdit" styleClass="RegisterButton" text="Edit profile" translateY="20.0">
                <rotationAxis>
                   <Point3D />
                </rotationAxis>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToSettings" text="Settings" translateY="-10.0">
+            <Button mnemonicParsing="false" onAction="#goToSettings" styleClass="RegisterButton" text="Settings" translateY="-10.0">
                <rotationAxis>
                   <Point3D />
                </rotationAxis>
             </Button>
          </children>
       </StackPane>
-      <Pane fx:id="gridPane" layoutY="331.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <VBox fx:id="mainVBox" alignment="BOTTOM_CENTER" layoutY="338.0" prefHeight="62.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="77.0" prefWidth="600.0">

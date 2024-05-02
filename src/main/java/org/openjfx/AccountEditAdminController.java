@@ -43,9 +43,15 @@ public class AccountEditAdminController {
         remove.setPrefWidth(85);
     }
 
+    GameController gameController = new GameController();
+
     @FXML
     public void goToGame() throws IOException {
-        App.setRoot("Game");
+        if (gameController.cameFrom.equals("MainMenu"))
+            App.setRoot("MainMenu");
+        else if (gameController.cameFrom.equals("Game")){
+            App.setRoot("Game");
+        }
     }
 
     @FXML

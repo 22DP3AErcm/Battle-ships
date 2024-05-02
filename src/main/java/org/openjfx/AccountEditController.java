@@ -21,9 +21,15 @@ public class AccountEditController {
     @FXML
     private TextField username, email, password;
 
+    GameController gameController = new GameController();
+
     @FXML
     public void goToGame() throws IOException {
-        App.setRoot("Game");
+        if (gameController.cameFrom.equals("MainMenu"))
+            App.setRoot("MainMenu");
+        else if (gameController.cameFrom.equals("Game")){
+            App.setRoot("Game");
+        }
     }
 
     @FXML

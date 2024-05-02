@@ -23,6 +23,8 @@ import javafx.scene.layout.VBox;
 public class GameController implements Initializable {
     String imageURL;
     
+    public static String cameFrom;
+
     @FXML
     private StackPane pane;
     @FXML
@@ -136,7 +138,6 @@ public class GameController implements Initializable {
             if (gameStarted == 0)
             {
                 startGame.setOnAction(event ->{
-                    System.out.println("Game Started");
                     startGame.setDisable(true);
                     startGame.setOpacity(0);
                     //grid.addButtonsToGrid();
@@ -194,12 +195,14 @@ public class GameController implements Initializable {
     @FXML
     private void goToSettings() throws IOException {
         App.setRoot("Settings");
+        cameFrom = "Game";
     }
 
     @FXML
     public void goToAccountEdit() throws IOException {
         if (LoginController.account.equals("a, a, a")) {
             App.setRoot("AccountEditAdmin");
+            cameFrom = "Game";
         }
         else
         {
@@ -209,25 +212,59 @@ public class GameController implements Initializable {
     }
 
     Random random = new Random();
-
+    public static List<String> hitCordinates = new ArrayList<>();
+    String coordinates = "";
+    int x;
+    int y;
     public void enemyTurn() {
-        int x = random.nextInt(9) + 1;
-        int y = random.nextInt(9) + 1;
-        while (Bullets.bulletsShotEnemy.containsKey(String.valueOf((char) (x + 64)) + y)) {
+        Bullets bullets = new Bullets(anchorPane);
+        if (!bullets.isHit){
             x = random.nextInt(9) + 1;
             y = random.nextInt(9) + 1;
+            coordinates = String.valueOf((char) (x + 64)) + y;
+
+            while (bullets.AllShots.contains(coordinates) && bullets.bulletsShotEnemy.containsKey(coordinates) && x < 10 && x > 0 && y < 10 && y > 0){
+                x = random.nextInt(9) + 1;
+                y = random.nextInt(9) + 1;
+                coordinates = String.valueOf((char) (x + 64)) + y;
+            }
+            bullets.AllShots.add(coordinates);
+            bullets.checkIfShipIsShot(coordinates);
+
+        }else{
+            String[] hit = hitCordinates.get(0).split("");
+            x = (int) hit[0].charAt(0) - 64;
+            y = Integer.parseInt(hit[1]);
+
+            if (x + 1 < 10 && x + 1 > 0 && !bullets.AllShots.contains(String.valueOf((char) (x + 1 + 64)) + y) && x + 1 > 0 && x + 1 < 10){
+                coordinates = String.valueOf((char) (x + 1 + 64)) + String.valueOf(y);
+            }else if (x - 1 > 0 && x - 1 < 10 && !bullets.AllShots.contains(String.valueOf((char) (x - 1 + 64)) + y) && x - 1 > 0 && x - 1 < 10){
+                coordinates = String.valueOf((char) (x - 1 + 64)) + String.valueOf(y);
+            }else if (y + 1 < 10 && y + 1 > 0 && !bullets.AllShots.contains(String.valueOf((char) (x + 64)) + (y + 1)) && y + 1 > 0 && y + 1 < 10){
+                coordinates = String.valueOf((char) (x + 64)) + String.valueOf(y + 1);
+            }else if (y - 1 > 0 && y - 1 < 10 && !bullets.AllShots.contains(String.valueOf((char) (x + 64)) + (y - 1)) && y - 1 > 0 && y - 1 < 10){
+                coordinates = String.valueOf((char) (x + 64)) + String.valueOf(y - 1);
+            }else{
+                x = random.nextInt(9) + 1;
+                y = random.nextInt(9) + 1;
+                coordinates = String.valueOf((char) (x + 64)) + String.valueOf(y);
+    
+                while (bullets.AllShots.contains(coordinates) && bullets.bulletsShotEnemy.containsKey(coordinates) && x < 10 && x > 0 && y < 10 && y > 0){
+                    x = random.nextInt(9) + 1;
+                    y = random.nextInt(9) + 1;
+                    coordinates = String.valueOf((char) (x + 64)) + String.valueOf(y);
+                }
+            }
+            bullets.AllShots.add(coordinates);
+            bullets.checkIfShipIsShot(coordinates);
         }
-        String coordinates = String.valueOf((char) (x + 64)) + y;
-        
-        Bullets bullets = new Bullets(anchorPane);
-        bullets.checkIfShipIsShot(coordinates);
-        
 
         // If hit is true enemy shoots again
         PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.6));
         pause.setOnFinished(event -> {
-            if (bullets.isHit){
-                
+            if (bullets.isHit && !bullets.gameOver){
+                hitCordinates.clear();
+                hitCordinates.add(coordinates);
                 enemyTurn();
             }
         });

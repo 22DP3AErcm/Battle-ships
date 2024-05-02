@@ -20,7 +20,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
-                  <Button layoutX="539.0" layoutY="7.0" mnemonicParsing="false" onAction="#goToGame" prefWidth="54.0" styleClass="Register" text="Game" textFill="WHITE" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
+                  <Button layoutX="539.0" layoutY="7.0" mnemonicParsing="false" onAction="#goToGame" prefWidth="54.0" styleClass="Register" text="Back" textFill="WHITE" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0" />
                </children>
             </AnchorPane>
             <TableView fx:id="table" prefHeight="250.0" prefWidth="442.0" stylesheets="@css/table.css" VBox.vgrow="ALWAYS">
