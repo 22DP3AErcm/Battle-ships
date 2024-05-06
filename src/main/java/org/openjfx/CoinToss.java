@@ -31,7 +31,7 @@ public class CoinToss {
     
     Random random = new Random();
 
-    int rotationTimes = 100;
+    int rotationTimes = 50;
     int outcome = random.nextInt(2);
     
     
@@ -64,13 +64,18 @@ public class CoinToss {
                     coinImageView.setImage(headsImage);
                 }
             }
-            if (rotationTimes > 91)
+            if (rotationTimes > 46)
             {
                 rotateTransition.setByAngle(180);
+                rotateTransition.setDuration(Duration.seconds(rotateTransition.getDuration().toSeconds() - 0.2));
+                rotateTransition.play();
+            }
+            else if (rotationTimes == 46)
+            {
                 rotateTransition.setDuration(Duration.seconds(rotateTransition.getDuration().toSeconds() - 0.1));
                 rotateTransition.play();
             }
-            else if (rotationTimes <= 91 && rotationTimes > 15 && rotationTimes  != 30)
+            else if (rotationTimes <= 45 && rotationTimes > 7 && rotationTimes  != 30)
             {
                 rotateTransition.play();
             }
@@ -79,7 +84,7 @@ public class CoinToss {
                 rotationTimes = rotationTimes - outcome;
                 rotateTransition.play();
             }
-            else if (rotationTimes > 1 && rotationTimes <= 15)
+            else if (rotationTimes > 1 && rotationTimes <= 7)
             {
                 rotateTransition.setByAngle(180);
                 rotateTransition.setDuration(Duration.seconds(rotateTransition.getDuration().toSeconds() + 0.1));

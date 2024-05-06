@@ -95,6 +95,7 @@ public class RegisterController {
 
             CsvManeger.addDataToCSV(usernameText, emailText, passwordText);
             Sorter.sort("epasts");
+            CsvManeger.defaultScore(usernameText);
             App.setRoot("Login");
         } else {
             DoNotMatch.setText("Passwords do not match!");

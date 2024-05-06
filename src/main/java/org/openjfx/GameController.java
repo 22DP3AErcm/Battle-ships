@@ -206,7 +206,7 @@ public class GameController implements Initializable {
         }
         else
         {
-            System.out.println(LoginController.account);
+
             App.setRoot("AccountEdit");
         }
     }

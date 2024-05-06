@@ -39,6 +39,9 @@ public class Bullets {
         if (isPauseInProgress) {
             return;
         }
+        if (gameOver) {
+            return;
+        }
         Map<String, Boolean> bulletsShot = gameController.isPlayerTurn ? bulletsShotPlayer : bulletsShotEnemy;
     
         // If a shot has already been fired at these coordinates, do nothing
@@ -250,14 +253,15 @@ public class Bullets {
 
         if (destroyedShipsPlayer.size() == 9) {
             gameOver = true;
-            PauseTransition pause = new PauseTransition(Duration.seconds(2));
-            pause.setOnFinished(event -> {
+            PauseTransition pause1 = new PauseTransition(Duration.seconds(2));
+            pause1.setOnFinished(event -> {
                 try {
                     App.setRoot("Lost");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
+            pause1.play();
         } else if (destroyedShipsEnemy.size() == 9) {
             gameOver = true;
             PauseTransition pause = new PauseTransition(Duration.seconds(2));

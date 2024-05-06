@@ -27,16 +27,10 @@ public class Enemy {
                 int orientation = random.nextInt(2);
                 atemp++;
 
-                if (atemp >= 500){
+                if (atemp >= 300){
                     enemyShips.clear();
                     atemp = 0;
-                    i = 0; 
-                    // prints all ships in map
-                    for (Map.Entry<String, List<String>> entry : enemyShips.entrySet()) {
-                        String ship = entry.getKey();
-                        List<String> coordinates = entry.getValue();
-                        System.out.println(ship + " " + coordinates);
-                    }
+                    i = 0;
                 }
                 
 

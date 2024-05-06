@@ -231,8 +231,6 @@ public class SettingsController {
             singleton.setCheckboxState(true);
             currentResolution[0] = (int)stage.getWidth() +19;
             currentResolution[1] = (int)stage.getHeight() +30;
-            System.out.println(currentResolution[0]);
-            System.out.println(currentResolution[1]);
         } else {
             stage.setFullScreen(false);
             Fullscreen = 0;

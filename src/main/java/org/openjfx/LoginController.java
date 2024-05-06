@@ -24,6 +24,7 @@ public class LoginController {
     @FXML
     private void goToRegister() throws IOException
     {
+        CsvManeger.addScore("Cilveksreww", 0, 1);
         App.setRoot("Register");
     }
 
@@ -66,14 +67,7 @@ public class LoginController {
             }
 
         }catch(IOException vException){
-
         }
-        
-        
-        
+
     }
-
-
-
-
 }
