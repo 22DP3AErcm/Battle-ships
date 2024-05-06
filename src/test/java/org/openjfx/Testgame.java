@@ -10,6 +10,7 @@ public class Testgame {
         int[] cordinates = {01, 02, 03};
         assertEquals(true, enemy.validShipPlacement(cordinates));
     }
+    
     @Test
     public void ShipPlacement() {
         Enemy enemy = new Enemy();

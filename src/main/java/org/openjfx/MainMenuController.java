@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,15 +33,23 @@ public class MainMenuController {
     Enemy enemy = new Enemy();
     Bullets bullets = new Bullets(anchorPane);
 
+    // Initialize the MainMenu scene
     public void initialize()
     {
         Platform.runLater(() -> {
             hBox.setPrefHeight(SettingsController.currentResolution[0]-62);
             vBox.setPrefWidth((SettingsController.currentResolution[0]-40)/2);
             vBox.setPrefHeight(SettingsController.currentResolution[0]-62);
+            try {
+                addDataToTable();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         });
     }
 
+    // Method for switching to the Game scene if the button is clicked
     public void startGame() throws Exception {
         gameController.shipLocations.clear();
         enemy.enemyShips.clear();
@@ -59,10 +66,14 @@ public class MainMenuController {
         bullets.destroyedShipsPlayer.clear();
         App.setRoot("Game");
     }
+
+    // Switch to the Settings scene
     public void setting() throws Exception {
         App.setRoot("Settings");
         gameController.cameFrom = "MainMenu";
     }
+
+    // Switch to the AccountEdit scene
     public void AccountEdit() throws Exception {
         if (LoginController.account.equals("a, a, a")) {
             App.setRoot("AccountEditAdmin");
@@ -74,10 +85,13 @@ public class MainMenuController {
         }
         gameController.cameFrom = "MainMenu";
     }
+
+    // Exit the game
     public void exitGame() {
         System.exit(0);
     }
 
+    // Add data to the table
     @FXML
     private void addDataToTable() throws IOException {
         tableView.setPrefWidth((SettingsController.currentResolution[0]-40)/2);
@@ -93,7 +107,8 @@ public class MainMenuController {
         }
     
         tableView.setItems(data);
-    
+        
+        // Ads username, wins, losses, and win/loss ratio to the table
         username.setCellValueFactory(cellData -> {
             String name = cellData.getValue().usernameProperty().get();
             return name != null ?
@@ -123,6 +138,8 @@ public class MainMenuController {
         });
     }
 }
+
+// This class is used to create the data for the table
 class LeaderboardData {
     private final SimpleObjectProperty<String> username;
     private final SimpleObjectProperty<Integer> wins;

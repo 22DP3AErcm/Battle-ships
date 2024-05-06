@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.io.IOException;
 
 public class Sorter {
+    // Method for sorting the CSV file
     public void sort(String SortType) {
         try (FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv")){
             BufferedReader bufferedReader = new BufferedReader(reader);
@@ -35,11 +36,11 @@ public class Sorter {
                 default:
                     break;
             }
-        }catch(IOException vException){
-
-            }
+        }catch(IOException vException){}
         
     }
+
+    // Method for sorting the column
     private void SortColum(ArrayList<String[]> Data, Integer index) {
         Collections.sort(Data, new Comparator<String[]>() {
             @Override
@@ -62,6 +63,7 @@ public class Sorter {
         });
     }
 
+    // Method for writing the sorted data to the CSV file
     private void writer(ArrayList<String[]> Data){
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv"))){
 

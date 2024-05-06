@@ -18,50 +18,48 @@ public class RegisterController {
 
     Sorter Sorter = new Sorter();
 
+    // Method for registering a new user
     @FXML
     private void register() throws IOException {
         String passwordText = password.getText();
         String password2Text = password2.getText();
-        
 
-
-
-        // Visiem logiem jābūt aizpildītiem
+        // All fields must be filled
         if (username.getText().isEmpty() || email.getText().isEmpty() || password.getText().isEmpty() || password2.getText().isEmpty()) {
             DoNotMatch.setText("All fields must be filled!");
             DoNotMatch.setVisible(true);
             return;
         }
 
-        // Lietotājvārdam jābūt vismaz 3 simbolus garai
+        // username must be at least 4 characters long
         if (username.getText().length() < 4) {
             DoNotMatch.setText("Username must be at least 4 characters long!");
             DoNotMatch.setVisible(true);
             return;
         }
 
-        // Lietotājvārdam jābūt vismaz 3 simbolus garai
+        // username can only contain letters and numbers and can only 15 characters long
         if (!Validator.isValidString(username.getText())) {
             DoNotMatch.setText("Username can only contain letters and numbers and can only 15 characters long!");
             DoNotMatch.setVisible(true);
             return;
         }
 
-        // E-pastam jābūt derīgam
+        // email must be valid
         if (!Validator.isValidEmail(email.getText())) {
             DoNotMatch.setText("Invalid email!");
             DoNotMatch.setVisible(true);
             return;
         }
 
-        // Paroles jābūt vismaz 8 simbolus garai
+        // password must be at least 8 characters long
         if (passwordText.length() < 8) {
             DoNotMatch.setText("Password must be at least 8 characters long!");
             DoNotMatch.setVisible(true);
             return;
         }
 
-        // Pārbauda vai lietotājvārds jau nav aizņemts un ēpasts
+        // password must contain at least one number
         try (FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv")){
             BufferedReader bufferedReader = new BufferedReader(reader);
 
@@ -87,13 +85,14 @@ public class RegisterController {
 
         } catch (IOException vException) {}
 
-        // Parolēm jāsakrīt
+        // password must match
         if (passwordText.equals(password2Text)) {
             DoNotMatch.setVisible(false);
             String usernameText = username.getText();
             String emailText = email.getText();
 
             CsvManeger.addDataToCSV(usernameText, emailText, passwordText);
+            // Sorts the CSV file by email
             Sorter.sort("epasts");
             CsvManeger.defaultScore(usernameText);
             App.setRoot("Login");
@@ -104,12 +103,10 @@ public class RegisterController {
         }
     }
 
-
+    // Method for switching to the Login scene if the button is clicked
     @FXML
     private void goToLogin() throws IOException
     {
         App.setRoot("Login");
-    }
-
-    
+    } 
 }

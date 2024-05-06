@@ -25,6 +25,7 @@ public class Ships extends Pane {
     private Map<Ships, List<String>> shipLocations;
     private String imageURL;
 
+    // Constructor for the Ships class that creates a ship with the specified parameters
     public Ships(int x, int y, int width, int height, double cellSize, Grid grid, Map<Ships, List<String>> shipLocations, String imageURL) {
         this.cellSize = cellSize;
         this.grid = grid;
@@ -43,6 +44,7 @@ public class Ships extends Pane {
             requestFocus();
         });
         
+        // Drag the ship
         rectangle.setOnMouseDragged((MouseEvent me) -> {     
             double offsetX = me.getSceneX() - mouseX;
             double offsetY = me.getSceneY() - mouseY;
@@ -50,57 +52,69 @@ public class Ships extends Pane {
             setTranslateY(oldY + offsetY);
         });
 
-        
+        // snap to grid when released
         setOnMouseReleased((MouseEvent me) -> {
             snapToGrid(this);
         });
 
+        // add the ship to the pane
         getChildren().add(rectangle);
     }
 
-
+    // Update the cell size of the ship
     public void updateCellSize(double newCellSize) {
         this.cellSize = newCellSize;
     }
 
+    // Get the rectangle of the ship
     public Rectangle getRectangle() {
         return rectangle;
     }
+
+    // Set the rotation of the ship
     public void setIsRotated(boolean isRotated) {
         this.isRotated = isRotated;
     }
 
+    // Get the rotation of the ship
     public int getRotation() {
         return rotation;
     }
 
+    // Get the image URL of the ship
     public String getImageURL(){
         return imageURL;
     }
 
+    // Set the rotation of the ship
     public void setRotation(int rotation) {
         this.rotation = rotation;
     }
     
+    // Get the rotation of the ship
     public boolean isRotated() {
         return isRotated;
     }
 
+    // creates a list of hit coordinates
     private List<String> hitCoordinates = new ArrayList<>();
 
+    // Add a hit coordinate
     public void addHitCoordinate(String coordinate) {
         hitCoordinates.add(coordinate);
     }
 
+    // returns the list of hit coordinates
     public List<String> getHitCoordinates() {
         return hitCoordinates;
     }
 
-    
+    // Snap the ship to the grid
     public void snapToGrid(Ships ship){
+        // Get the current grid coordinates
         double gridX = grid.getGridPane().getLayoutX();
         double gridY = grid.getGridPane().getLayoutY();
-    
+        
         double newX = Math.round((getTranslateX() - gridX) / cellSize) * cellSize + gridX;
         double newY = Math.round((getTranslateY() - gridY) / cellSize) * cellSize + gridY;
     
@@ -120,7 +134,8 @@ public class Ships extends Pane {
             // If the ship is dragged outside the grid, revert to the original position
             double oldGridWidth = gridX + (9 - (int) ((rectangle.getWidth()) / cellSize)) * cellSize;
             double oldGridHeight = gridY + (9 - (int) ((rectangle.getHeight()) / cellSize)) * cellSize;
-        
+            
+            // Check if the old position is within the grid
             if (oldX >= gridX && oldX <= oldGridWidth && oldY >= gridY && oldY <= oldGridHeight && !onShip() && !areShipsAdjacent()) {
                 setTranslateX(oldX);
                 setTranslateY(oldY);
@@ -132,6 +147,7 @@ public class Ships extends Pane {
         }
     }
 
+    // Check if the ship is on another ship
     public boolean onShip() {
         // Get the current ship's grid coordinates
         List<String> currentShipCoordinates = getGridCoordinates();
@@ -159,6 +175,7 @@ public class Ships extends Pane {
         return false;
     }
 
+    // Check if the ship is adjacent to another ship
     public boolean areShipsAdjacent() {
         // Get the current ship's grid coordinates
         List<String> currentShipCoordinates = getGridCoordinates();
@@ -202,7 +219,7 @@ public class Ships extends Pane {
         return false;
     }
     
-    
+    // Convert the grid coordinates
     public  int[] convertCoordinate(String coordinate) {
         int x = coordinate.charAt(0) - 'A';
         int y = Integer.parseInt(coordinate.substring(1)) - 1;
@@ -232,6 +249,7 @@ public class Ships extends Pane {
         return gridCoordinates;
     }
 
+    // Rotate the ship
     public void rotateShip(KeyEvent event) {
         if (event.getCode() == KeyCode.R) {
             Rectangle rectangle = this.getRectangle();
@@ -284,7 +302,7 @@ public class Ships extends Pane {
         }
     }
     
-
+    // Check if the ship is within the grid
     public boolean isWithinGrid() {
         double gridX = grid.getGridPane().getLayoutX();
         double gridY = grid.getGridPane().getLayoutY();

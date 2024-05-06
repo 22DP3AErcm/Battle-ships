@@ -5,10 +5,12 @@ public class Draggable {
     private double yOffset;
     private double cellSize;
 
+    // Constructor for the Draggable class
     public Draggable(double cellSize) {
         this.cellSize = cellSize;
     }
 
+    // Method for making a object draggable
     public void makeDraggable(javafx.scene.Node node) {
         node.setOnMousePressed((event) -> {
             xOffset = event.getSceneX() - node.getTranslateX();

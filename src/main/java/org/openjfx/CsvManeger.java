@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 
 
 public class CsvManeger {
-
+    // Method for adding new account to the CSV file
     public static void addDataToCSV(String username, String email, String password) {
         try(FileWriter outputfile = new FileWriter("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv", true)) { 
                  
@@ -22,6 +22,7 @@ public class CsvManeger {
         }catch(IOException vException){}
     }
     
+    // Method for removing an account from the CSV file
     @FXML
     public static void RemoveAccount(String account) throws IOException
     {
@@ -47,6 +48,7 @@ public class CsvManeger {
         bufferedReader.close();
     }
 
+    // Method for getting all accounts from the CSV file
     public static List<String> getAllAccountList() throws IOException
     {
         FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv");
@@ -60,6 +62,7 @@ public class CsvManeger {
         return Data;
     }
 
+    // Method for getting all accounts from the CSV file for the leaderboard
     public static List<Object> getLeaderboardList() throws IOException
     {
         FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Leaderboard.csv");
@@ -72,6 +75,8 @@ public class CsvManeger {
         bufferedReader.close();
         return Data;
     }
+
+    // Method for adding a score to the leaderboard
     public static void addScore(String username, int win, int loss) throws IOException
     {
         FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Leaderboard.csv");
@@ -100,10 +105,14 @@ public class CsvManeger {
 
         bufferedReader.close();
     }
+
+    // Method for adding a score to the leaderboard
     public static void addScore(String username, int win) throws IOException
     {
         addScore(username, win, 0);
     }
+
+    // Adds a default score to the leaderboard for a new account
     public static void defaultScore(String username) throws IOException
     {
         FileWriter outputfile = new FileWriter("src\\main\\resources\\org\\openjfx\\CSV\\Leaderboard.csv", true);

@@ -15,7 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 public class AccountEditAdminController {
-
     @FXML
     TableColumn<DataItem, String> username, email, password;
     @FXML
@@ -30,7 +29,7 @@ public class AccountEditAdminController {
     AnchorPane anchorpane;
 
 
-
+    // This method centers the table in the anchorpane
     @FXML
     private void initialize() throws IOException
     {
@@ -45,6 +44,7 @@ public class AccountEditAdminController {
 
     GameController gameController = new GameController();
 
+    // This method takes the user to the game screen or the main menu screen
     @FXML
     public void goToGame() throws IOException {
         if (gameController.cameFrom.equals("MainMenu"))
@@ -53,14 +53,15 @@ public class AccountEditAdminController {
             App.setRoot("Game");
         }
     }
-
+    
+    // This method refreshes the table and adds the data to it
     @FXML
     private void addDataToTable() throws IOException {
         username.setPrefWidth((table.getWidth()-90)/3);
         email.setPrefWidth((table.getWidth()-90)/3);
         password.setPrefWidth((table.getWidth()-90)/3);
         remove.setPrefWidth(85);
-        
+        // Get all accounts from the csv file
         List<String> allAccounts = CsvManeger.getAllAccountList();
         ObservableList<DataItem> data = FXCollections.observableArrayList();
         for (int i = 0; i < allAccounts.size(); i++) {
@@ -77,21 +78,24 @@ public class AccountEditAdminController {
         }
     
         table.setItems(data);
-    
+        
+        // Gives values to the columns
         username.setCellValueFactory(cellData -> {
             String name = cellData.getValue().nameProperty().get();
             return name != null ?
                     new SimpleObjectProperty<>(name) :
                     null;
         });
-    
+        
+        // Gives values to the columns
         email.setCellValueFactory(cellData -> {
             String email = cellData.getValue().emailProperty().get();
             return email != null ?
                     new SimpleObjectProperty<>(email) :
                     null;
         });
-    
+
+        // Gives values to the columns
         password.setCellValueFactory(cellData -> {
             String password = cellData.getValue().passwordProperty().get();
             return password != null ?
@@ -99,6 +103,7 @@ public class AccountEditAdminController {
                     null;
         });
 
+        // Gives values to the columns
         remove.setCellValueFactory(cellData -> {
             Button button = cellData.getValue().buttonProperty().get();
             button.getStyleClass().add("remove-btn");
@@ -110,7 +115,7 @@ public class AccountEditAdminController {
     }
 }
 
-
+// This class is used to create the data for the table
 class DataItem {
     private final SimpleObjectProperty<String> name;
     private final SimpleObjectProperty<String> email;

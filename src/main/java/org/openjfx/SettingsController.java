@@ -32,6 +32,7 @@ public class SettingsController {
 
     GameController gameController = new GameController();
 
+    // Method for switching to the Game scene or the MainMenu scene
     @FXML
     private void goToGame() throws IOException {
         if (gameController.cameFrom.equals("MainMenu"))
@@ -41,6 +42,7 @@ public class SettingsController {
         }
     }
 
+    // Method for changing the resolution to 800x600
     @FXML
     private void changeResulution800x600() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
@@ -62,6 +64,7 @@ public class SettingsController {
         currentResolution[1] = 600;
     }
 
+    // Method for changing the resolution to 1024x768
     @FXML
     private void changeResulution1024x768() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
@@ -82,6 +85,7 @@ public class SettingsController {
         currentResolution[1] = 768;
     }
 
+    // Method for changing the resolution to 1280x720
     @FXML
     private void changeResulution1280x720() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
@@ -102,6 +106,7 @@ public class SettingsController {
         currentResolution[1] = 720;
     }
 
+    // Method for changing the resolution to 1280x800
     @FXML
     private void changeResulution1280x800() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
@@ -122,6 +127,7 @@ public class SettingsController {
         currentResolution[1] = 800;
     }
 
+    // Method for changing the resolution to 1366x768
     @FXML
     private void changeResulution1366x768() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
@@ -142,6 +148,7 @@ public class SettingsController {
         currentResolution[1] = 768;
     }
 
+    // Method for changing the resolution to 1440x900
     @FXML
     private void changeResulution1440x900() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
@@ -162,6 +169,7 @@ public class SettingsController {
         currentResolution[1] = 900;
     }
 
+    // Method for changing the resolution to 1600x900
     @FXML
     private void changeResulution1600x900() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
@@ -182,6 +190,7 @@ public class SettingsController {
         currentResolution[1] = 900;
     }
 
+    // Method for changing the resolution to 1920x1080
     @FXML
     private void changeResulution1920x1080() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
@@ -202,6 +211,7 @@ public class SettingsController {
         currentResolution[1] = 1080;
     }
 
+    // Saves the state of the checkbox
     @FXML
     private void initialize() throws IOException {
         singleton = Singleton.getInstance();
@@ -209,11 +219,13 @@ public class SettingsController {
         Fullscreen = Singleton.getInstance().getFullscreenState();
     }
 
+    // sets the state of the checkbox
     @FXML
     private void handleCheckboxAction(ActionEvent event) {
         singleton.setCheckboxState(fullscreenCheckbox.isSelected());
     }
 
+    // Method for changing the resolution to fullscreen
     @FXML
     private void changeResulutionFullscreen() throws IOException {
         Stage stage = (Stage) resolution.getScene().getWindow();
@@ -250,6 +262,7 @@ public class SettingsController {
         singleton.setFullscreenState(Fullscreen);
     }
 
+    // Removes the account from the CSV file
     @FXML
     public void RemoveAccount() throws IOException {
         CsvManeger.RemoveAccount(LoginController.account);
@@ -260,6 +273,7 @@ public class SettingsController {
         stage.centerOnScreen();
     }
 
+    // Asks for confirmation before removing the account
     @FXML
     public void Confirmation() throws IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);

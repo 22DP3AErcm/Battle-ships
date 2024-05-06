@@ -20,14 +20,14 @@ public class LoginController {
     @FXML
     private Text WrongLogin;
 
-
+    // Method for switching to the Register scene
     @FXML
     private void goToRegister() throws IOException
     {
-        CsvManeger.addScore("Cilveksreww", 0, 1);
         App.setRoot("Register");
     }
 
+    // Method for logging in
     @FXML
     private void login() throws IOException
     {
@@ -36,7 +36,7 @@ public class LoginController {
         
         Boolean login = false;
         
-
+        // Read the Users.csv file to check if the email and password match
         try (FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Users.csv")){
             BufferedReader bufferedReader = new BufferedReader(reader);
 
@@ -54,6 +54,8 @@ public class LoginController {
                     break;
                 }
             }
+
+            // If the email and password match, switch to the MainMenu scene
             if (login) {
                 Stage stage = (Stage) email.getScene().getWindow();
 
@@ -63,6 +65,7 @@ public class LoginController {
                 App.setRoot("MainMenu");
                 
             } else {
+                // If the email and password do not match, display an error message
                 WrongLogin.setVisible(true);
             }
 

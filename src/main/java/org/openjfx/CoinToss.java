@@ -38,21 +38,20 @@ public class CoinToss {
 
     GameController gameController = new GameController();
 
+    // Method for flipping the coin
     public void coinToss() throws IOException {
-
+        // Create an ImageView for the coin
         coinImageView = new ImageView(headsImage);
         root.getChildren().add(coinImageView);
 
         // Create a RotateTransition for flipping the coin
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(1), coinImageView);
         rotateTransition.setAxis(Rotate.Y_AXIS);
-        rotateTransition.setByAngle(90); // Rotate 180 degrees (half rotation)
-        rotateTransition.setCycleCount(1); // Rotate back and forth once
+        rotateTransition.setByAngle(90);
+        rotateTransition.setCycleCount(1);
         rotateTransition.setInterpolator(Interpolator.EASE_BOTH);
 
         rotateTransition.play();
-        
-        
 
         // Change the image at the middle of the animation to simulate the flip
         rotateTransition.setOnFinished(event -> {
@@ -100,8 +99,10 @@ public class CoinToss {
                 rotateTransition.setByAngle(90);
                 rotateTransition.play();
             }
+            // When the coin has stopped flipping, check if the user's choice is correct
             else
             {
+                // If the user's choice is correct, go to the enemy screen
                 if (userchoice == outcome)
                 {
                     try
@@ -111,6 +112,7 @@ public class CoinToss {
                     }
                     catch(IOException e){}
                 }
+                // If the user's choice is incorrect, go to the game screen
                 else
                 {
                     try
@@ -125,6 +127,7 @@ public class CoinToss {
             rotationTimes--;
         });
     }
+    // Calls the coinToss method with the user's choice as tails
     @FXML
     private void TailsToss() throws IOException
     {
@@ -133,6 +136,7 @@ public class CoinToss {
         tailsButton.setDisable(true);
         headsButton.setDisable(true);
     }
+    // Calls the coinToss method with the user's choice as heads
     @FXML
     private void HeadsToss() throws IOException
     {

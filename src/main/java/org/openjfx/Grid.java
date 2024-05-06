@@ -17,18 +17,20 @@ public class Grid {
     private AnchorPane anchorPane;
     private Pane gridPane;
     Bullets bullets;
-    public Grid() {
-    }
+    public Grid() {}
 
+    // Add a ship to the grid
     public void addShip(Ships ship) {
         ships.add(ship);
         gridPane.getChildren().add(ship);
     }
 
+    // Get the list of ships
     public List<Ships> getShips() {
         return ships;
     }
     
+    // Create a 9x9 grid
     public Grid(AnchorPane anchorPane) {
         this.anchorPane = anchorPane;
         this.gridPane = new Pane();
@@ -57,6 +59,7 @@ public class Grid {
         gridPane.toBack();
     }
 
+    // Center the gridPane in the anchorPane
     public void centerGridPane() {
         double paneWidth = anchorPane.getWidth();
         double paneHeight = anchorPane.getHeight();
@@ -69,11 +72,12 @@ public class Grid {
         AnchorPane.setRightAnchor(gridPane, (paneWidth - gridPaneWidth) / 2);
     }
 
+    // Get the gridPane
     public Pane getGridPane() {
         return gridPane;
     }
     
-
+    // Add buttons to the grid
     public void addButtonsToGrid() {
         char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
         int cellSize = 40;
@@ -99,9 +103,13 @@ public class Grid {
                     button.setPrefSize(cellSize, cellSize);
                     button.setLayoutX(startX + j * cellSize);
                     button.setLayoutY(startY + i * cellSize);
+
+                    // If it is the player's turn, add an event handler to the button
                     if (gameController.isPlayerTurn) {
+                        // Check if the ship is shot when the button is clicked
                         button.setOnAction(event -> bullets.checkIfShipIsShot(buttonName));
                     }
+                    
                     button.setOpacity(0);
                     anchorPane.getChildren().add(button);
                     button.toFront();

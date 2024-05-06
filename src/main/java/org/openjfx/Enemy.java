@@ -27,13 +27,14 @@ public class Enemy {
                 int orientation = random.nextInt(2);
                 atemp++;
 
+                // If the enemy ships are not placed within 300 attempts, clear the enemy ships and try again
                 if (atemp >= 300){
                     enemyShips.clear();
                     atemp = 0;
                     i = 0;
                 }
                 
-
+                // Place the ships on the grid if the coordinates are valid and the ships are not adjacent to each other
                 if (orientation == 0) {
                     if (shipWidths.get(i) == 80){
                         String stringCordinates = String.valueOf(x) + String.valueOf(y)+ "," + String.valueOf(x+1) + String.valueOf(y);
@@ -109,6 +110,7 @@ public class Enemy {
                         }
                     }
                 }
+                // If the enemy ships are placed, set the shipIsInvalid flag to true
                 if (enemyShips.size() == 9) {
                     shipIsInvalid = true;
                 }
@@ -116,6 +118,7 @@ public class Enemy {
         }       
     }
 
+    // Check if the given coordinates are valid
     public boolean validShipPlacement(int[] coordinates) {
         for (int i = 0; i < coordinates.length; i++) {
             int row = coordinates[i] / 10;
@@ -124,13 +127,12 @@ public class Enemy {
                 return false;
             }
         }
-    
         return true;
     }
 
+    // Check if the given coordinates are on the enemy ship
     public boolean onShip(int[] currentShipCoordinates) {
         String[] coordinateStr = convertCoordinate(currentShipCoordinates);
-    
         // Iterate over all the enemy ships
         for (List<String> enemyShipCoordinates : enemyShips.values()) {
             // Check if the given coordinates are on the enemy ship
@@ -147,6 +149,7 @@ public class Enemy {
         return false;
     }
     
+    // Check if the given coordinates are adjacent to the enemy ship
     public boolean areShipsAdjacent(int[] currentShipCoordinates) {
         String[] coordinateStr = convertCoordinate(currentShipCoordinates);
 
@@ -167,6 +170,7 @@ public class Enemy {
         return false;
     }
     
+    // Convert the given coordinates to a string
     public String[] convertCoordinate(int[] coordinates) {
         String[] convertedCoordinates = new String[coordinates.length];
         
@@ -180,12 +184,14 @@ public class Enemy {
         return convertedCoordinates;
     }
 
+    // Convert the given coordinates to an integer array
     public  int[] convertCoordinate(String coordinate) {
         int x = coordinate.charAt(0) - 'A';
         int y = Integer.parseInt(coordinate.substring(1)) - 1;
         return new int[]{x, y};
     }
 
+    // Convert the given coordinates to an integer array
     public int[] cordinate(String[] coordinate) {
         int[] intArray = new int[coordinate.length];
 
@@ -195,5 +201,3 @@ public class Enemy {
         return intArray;
     }
 }
-
-

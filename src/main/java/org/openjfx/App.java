@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.concurrent.locks.AbstractQueuedLongSynchronizer.ConditionObject;
 
 /**
  * JavaFX App
@@ -18,9 +17,9 @@ public class App extends Application {
 
     private static Scene scene;
 
+    // Creates the scene and sets the stage
     @Override
     public void start(Stage stage) throws IOException {
-        // CoinToss.coinToss();
         scene = new Scene(loadFXML("Login"));
         stage.setScene(scene);
 
@@ -32,15 +31,18 @@ public class App extends Application {
         stage.show();
     }
 
+    // Change the scene
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+    // Load the FXML file
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
+    // Start the application
     public static void main(String[] args) {
         launch();
     }
