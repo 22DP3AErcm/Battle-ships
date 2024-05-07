@@ -296,8 +296,8 @@ public class Ships extends Pane {
                     this.setIsRotated(true);
                     this.setRotation(1);
                     rectangle.setFill(new ImagePattern(new Image(this.getImageURL() + "Rotated.png")));
-                }
-                
+                }   
+                         
             }
         }
     }
