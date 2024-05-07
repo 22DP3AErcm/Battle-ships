@@ -124,4 +124,29 @@ public class CsvManeger {
         writer.newLine();
         writer.close();
     }
+    public static void removeScore(String username) throws IOException
+    {
+        FileReader reader = new FileReader("src\\main\\resources\\org\\openjfx\\CSV\\Leaderboard.csv");
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        List<String[]> Data = new ArrayList<String[]>();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            String[] lineValues = line.split(", ");
+            if (!lineValues[0].equals(username))
+            {
+                Data.add(lineValues);
+            }
+        }
+
+        FileWriter fileWriter = new FileWriter("src\\main\\resources\\org\\openjfx\\CSV\\Leaderboard.csv");
+        BufferedWriter writer = new BufferedWriter(fileWriter);
+        for (String[] lines : Data)
+        {
+            writer.write(lines[0] + ", " + lines[1] + ", " + lines[2] + ", " + lines[3]);
+            writer.newLine();
+        }
+        writer.close();
+
+        bufferedReader.close();
+    }
 } 
